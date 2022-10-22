@@ -542,9 +542,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0.000000059604645, y: -0.5, z: -0.00000008940697}
 --- !u!23 &742181874
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -619,6 +619,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 864788949}
+  - component: {fileID: 864788950}
   m_Layer: 0
   m_Name: Character_Pos
   m_TagString: Untagged
@@ -634,13 +635,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864788948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 943.499, y: 542.054, z: 62.057}
+  m_LocalPosition: {x: 943.488, y: 541.716, z: 62.101}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &864788950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864788948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be9d62c226581541b8ab2cc1eb088a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Character_Array:
+  - {fileID: 5669065170343478300, guid: 71b4719b36936eb42b9f471c20d40ee5, type: 3}
+  - {fileID: 2118044704855210100, guid: cee191b51881073418206ade9fe19748, type: 3}
+  - {fileID: 432469323775782563, guid: 595672970f4276744a911d53bf64988b, type: 3}
+  Character_Spot: {fileID: 864788948}
+  Player_Character: {fileID: 0}
+  Character: {fileID: 0}
+  Pos_Trans: {x: 0, y: 0, z: 0}
+  Character_Selection: 0
 --- !u!1 &1017967076
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,8 +818,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.8867924, g: 0.06274474, b: 0.06274474, a: 1}
+    m_PressedColor: {r: 0, g: 0.09204511, b: 0.990566, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -817,7 +839,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1104386487}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 864788950}
+        m_TargetAssemblyTypeName: Character_Cycling, Assembly-CSharp
+        m_MethodName: Forward_Choice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1104386487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -933,7 +967,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831201048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 943.582, y: 542.34, z: 60.13}
+  m_LocalPosition: {x: 943.582, y: 542.683, z: 59.774}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
