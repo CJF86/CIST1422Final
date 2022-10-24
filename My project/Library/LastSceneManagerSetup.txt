@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Character_Selection.unity
+- path: Assets/Scenes/Prison_Scene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
