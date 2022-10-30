@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638025266634943824
-    m_Hash: 3952336809
+      ticks: 638025681449857422
+    m_Hash: 770956246
   m_LockFileStatus:
     m_FilePath: C:/Users/Craig/Desktop/CIST1422/CIST1422Final/My project/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638025266635133873
-    m_Hash: 2800428560
+      ticks: 638025681450117490
+    m_Hash: 4003700833
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:

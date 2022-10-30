@@ -65,9 +65,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player_Movement: {fileID: 0}
+  Player_Body: {fileID: 0}
   Character_Walk_Speed: 1
   Character_Run_Speed: 5
   Z_Movement_Update: {x: 0, y: 0, z: 0}
+  X_Movement_Update: {x: 0, y: 0, z: 0}
+  Y_Rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1102 &-2975472618079984171
 AnimatorState:
   serializedVersion: 6
