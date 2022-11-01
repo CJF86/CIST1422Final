@@ -14,13 +14,15 @@ public class Character_Movement : MonoBehaviour
 
     public float Character_Walk_Speed = 10f;
 
+    public float Character_Turn_Speed = 5f;
+
     public float Character_Run_Speed = 15f;
 
     public Vector3 X_Movement_Update;
 
     public Vector3 Z_Movement_Update;
 
-    public Vector3 Mouse_Value;
+    public float Mouse_Value;
 
     
 
@@ -49,7 +51,7 @@ public class Character_Movement : MonoBehaviour
         //Initial_Rotation = Player_Body.rotation;
 
         Character_Control();
-        //Character_Rotation();
+        Character_Rotation();
 
         //Animation_Triggers();
 
@@ -135,11 +137,20 @@ public class Character_Movement : MonoBehaviour
 
     public void Character_Rotation()
     {
-        Mouse_Value = Input.mousePosition;
+        Mouse_Value = Input.GetAxis("Mouse X");
 
-        Mouse_X = Mouse_Value.x * Time.fixedDeltaTime;
+        Debug.Log(Mouse_X);
 
-        Player_Body.AddTorque(Vector3.up * Mouse_X);
+        if(Mouse_Value >= 0.1)
+        {
+            Player_Body.AddTorque(Vector3.up * Mouse_X * Character_Turn_Speed, ForceMode.VelocityChange);
+
+        }else if(Mouse_Value <= 0)
+        {
+            Player_Body.AddTorque(Vector3.up * Mouse_X * Character_Turn_Speed, ForceMode.VelocityChange);
+        }
+
+        
 
     }
 
