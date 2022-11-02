@@ -8,13 +8,15 @@ public class Container_Link : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player_Eyes = GameObject.Find("Man_Eyes_Mesh").transform;
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        Player_Eyes = GameObject.Find("Man_Eyes_Mesh").transform;
+
         transform.position = Player_Eyes.transform.position;
         
     }

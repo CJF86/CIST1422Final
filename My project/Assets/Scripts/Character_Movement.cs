@@ -28,11 +28,7 @@ public class Character_Movement : MonoBehaviour
 
     public float Mouse_X;
 
-    //public Quaternion X_Rotation;
-
-    //public Quaternion Initial_Rotation;
-
-    //public Transform Player_Transform; Transform probably can be accessed through game object
+    
 
     // Start is called before the first frame update
     void Start()
@@ -139,7 +135,7 @@ public class Character_Movement : MonoBehaviour
     {
         Mouse_Value = Input.GetAxis("Mouse X");
 
-        Debug.Log(Mouse_X);
+        Debug.Log(Mouse_Value);
 
         if(Mouse_Value >= 0.1)
         {
