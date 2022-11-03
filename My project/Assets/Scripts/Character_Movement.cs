@@ -12,11 +12,11 @@ public class Character_Movement : MonoBehaviour
 
     public bool He_Zoom = false;
 
-    public float Character_Walk_Speed = 10f;
+    public float Character_Walk_Speed = 1f;
 
     public float Character_Turn_Speed = 5f;
 
-    public float Character_Run_Speed = 15f;
+    public float Character_Run_Speed = 5f;
 
     public Vector3 X_Movement_Update;
 
@@ -42,14 +42,12 @@ public class Character_Movement : MonoBehaviour
     {
         
 
-        //Debug.Log(Mouse_X);
-
-        //Initial_Rotation = Player_Body.rotation;
+        
 
         Character_Control();
         Character_Rotation();
 
-        //Animation_Triggers();
+        
 
     }
 
@@ -84,7 +82,7 @@ public class Character_Movement : MonoBehaviour
         
         if(Z_Movement >= 0.1)
         {
-            Player_Body.AddForce(Vector3.forward * -Character_Walk_Speed, ForceMode.VelocityChange);
+            Player_Body.AddRelativeForce(Vector3.forward.normalized * -Character_Walk_Speed, ForceMode.VelocityChange);
             Player_Movement.SetBool("Is_Walking", true);
 
         }
@@ -93,14 +91,14 @@ public class Character_Movement : MonoBehaviour
             
             Player_Movement.SetBool("Is_Walking", false);
             Player_Movement.SetBool("Is_Running", true);
-            Player_Body.AddForce(Vector3.forward * -Character_Run_Speed, ForceMode.VelocityChange);
+            Player_Body.AddForce(Vector3.forward.normalized * -Character_Run_Speed, ForceMode.VelocityChange);
             Debug.Log("Run trigger");
 
         }
 
         if(Z_Movement < 0)
         {
-            Player_Body.AddForce(Vector3.forward * Character_Walk_Speed, ForceMode.VelocityChange);
+            Player_Body.AddRelativeForce(Vector3.forward.normalized * Character_Walk_Speed, ForceMode.VelocityChange);
             Player_Movement.SetBool("Is_Walking", false);
             Player_Movement.SetBool("Is_Walking_Back", true);
 
@@ -109,44 +107,53 @@ public class Character_Movement : MonoBehaviour
         {
             Player_Movement.SetBool("Is_Walking_Back", false);
             Player_Movement.SetBool("Is_Running_Back", true);
-            Player_Body.AddForce(Vector3.forward * Character_Run_Speed, ForceMode.VelocityChange);
+            Player_Body.AddForce(Vector3.forward.normalized * Character_Run_Speed, ForceMode.VelocityChange);
             Debug.Log("Run trigger");
         }
 
         if(X_Movement >= 0.1)
         {
-            Player_Body.AddForce(Vector3.right * -Character_Walk_Speed, ForceMode.VelocityChange);
+            Player_Body.AddRelativeForce(Vector3.right.normalized * Character_Walk_Speed, ForceMode.VelocityChange);
             Player_Movement.SetBool("Strafe_Right", true);
             Player_Movement.SetBool("Strafe_Left", false);
         }
 
         if(X_Movement < 0)
         {
-            Player_Body.AddForce(Vector3.right * Character_Walk_Speed, ForceMode.VelocityChange);
+            Player_Body.AddRelativeForce(Vector3.right.normalized * -Character_Walk_Speed, ForceMode.VelocityChange);
             Player_Movement.SetBool("Strafe_Left", true);
             Player_Movement.SetBool("Strafe_Right", false);
         }
         
-        
+        //.AddRelativeForce fixed the sideways movement issue. Think it had something to do with local/world vector differences
 
     }
 
     public void Character_Rotation()
     {
+        //Works well enough for now
+
         Mouse_Value = Input.GetAxis("Mouse X");
 
         Debug.Log(Mouse_Value);
 
-        if(Mouse_Value >= 0.1)
-        {
-            Player_Body.AddTorque(Vector3.up * Mouse_X * Character_Turn_Speed, ForceMode.VelocityChange);
+        float Turn_Degree = Mouse_Value * Character_Turn_Speed * Time.fixedDeltaTime;
 
-        }else if(Mouse_Value <= 0)
-        {
-            Player_Body.AddTorque(Vector3.up * Mouse_X * Character_Turn_Speed, ForceMode.VelocityChange);
-        }
+        Vector3 Turn_Vector = new Vector3();
+
+        Turn_Vector.y += -Mouse_Value * Character_Turn_Speed * Time.fixedDeltaTime;
+
+        Debug.Log("This is" + Turn_Vector.y);
+
+        Quaternion Turn = Quaternion.Euler(Turn_Vector);
+
+        Player_Body.MoveRotation(Player_Body.rotation * Turn);
+
+       
 
         
+
+
 
     }
 

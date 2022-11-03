@@ -41,5 +41,7 @@ public class Camera_Link : MonoBehaviour
             Player_Camera.enabled = true;
         }
 
+
+
     }
 }
