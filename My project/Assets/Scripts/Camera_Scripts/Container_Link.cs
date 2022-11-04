@@ -5,7 +5,7 @@ using UnityEngine;
 public class Container_Link : MonoBehaviour
 {
     public Transform Player_Eyes;
-    public float Character_Turn_Speed = 5f;
+    public float Character_Turn_Speed = 10f;
     public float Y_Input;
     public float Mouse_Value;
     // Start is called before the first frame update
@@ -36,6 +36,21 @@ public class Container_Link : MonoBehaviour
         Vector3 Turn_Vector = new Vector3();
 
         Turn_Vector.x += -Mouse_Value * Character_Turn_Speed * Time.fixedDeltaTime;
+
+        //if statement not triggering for some reason
+        /*
+        if(Turn_Vector.x >= 38)
+        {
+            Turn_Vector.x = 38;
+            Debug.Log("Max trigger");
+        }
+
+        if(Turn_Vector.x <= -13)
+        {
+            Turn_Vector.x = -13;
+            Debug.Log("Min trigger");
+        }
+        */
 
         Quaternion Turn = Quaternion.Euler(Turn_Vector);
 

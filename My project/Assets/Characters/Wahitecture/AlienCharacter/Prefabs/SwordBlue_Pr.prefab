@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1931242771419856888}
   - component: {fileID: 4407282788606511922}
   - component: {fileID: 6973172534470744631}
+  - component: {fileID: 5515502722018740091}
   m_Layer: 0
   m_Name: SwordBlue_Pr
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,6 +54,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -95,3 +98,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.10201348, y: 1.1319909, z: 0.051847104}
   m_Center: {x: 0.0046947654, y: 0.56600726, z: 0.000000007450581}
+--- !u!114 &5515502722018740091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2749777599293696743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0685a98b44a93a54fa8e863dc622df1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player_Hand: {fileID: 0}

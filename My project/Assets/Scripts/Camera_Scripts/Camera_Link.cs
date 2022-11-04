@@ -24,7 +24,7 @@ public class Camera_Link : MonoBehaviour
     {
         transform.position = Camera_Container.transform.position;
 
-        Camera_Control();
+        //Camera_Control();
         
     }
 

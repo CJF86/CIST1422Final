@@ -92,7 +92,7 @@ public class Character_Movement : MonoBehaviour
             Player_Movement.SetBool("Is_Walking", false);
             Player_Movement.SetBool("Is_Running", true);
             Player_Body.AddForce(Vector3.forward.normalized * -Character_Run_Speed, ForceMode.VelocityChange);
-            Debug.Log("Run trigger");
+            //Debug.Log("Run trigger");
 
         }
 
@@ -108,7 +108,7 @@ public class Character_Movement : MonoBehaviour
             Player_Movement.SetBool("Is_Walking_Back", false);
             Player_Movement.SetBool("Is_Running_Back", true);
             Player_Body.AddForce(Vector3.forward.normalized * Character_Run_Speed, ForceMode.VelocityChange);
-            Debug.Log("Run trigger");
+            //Debug.Log("Run trigger");
         }
 
         if(X_Movement >= 0.1)
@@ -135,7 +135,7 @@ public class Character_Movement : MonoBehaviour
 
         Mouse_Value = Input.GetAxis("Mouse X");
 
-        Debug.Log(Mouse_Value);
+        //Debug.Log(Mouse_Value);
 
         float Turn_Degree = Mouse_Value * Character_Turn_Speed * Time.fixedDeltaTime;
 
@@ -143,7 +143,9 @@ public class Character_Movement : MonoBehaviour
 
         Turn_Vector.y += -Mouse_Value * Character_Turn_Speed * Time.fixedDeltaTime;
 
-        Debug.Log("This is" + Turn_Vector.y);
+        //Turn_Vector.y = Mathf.Clamp(Turn_Vector.y, 110f, 136f);
+
+        //Debug.Log("This is" + Turn_Vector.y);
 
         Quaternion Turn = Quaternion.Euler(Turn_Vector);
 
