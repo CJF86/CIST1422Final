@@ -18,7 +18,7 @@ public class Character_Cycling : MonoBehaviour
 
     public Vector3 Pos_Trans;
 
-    public int Character_Selection = 0;
+    public int Character_Selection = 1;
 
     //public bool Character_Destruction = false;
     // Start is called before the first frame update

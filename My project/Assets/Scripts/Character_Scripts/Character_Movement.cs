@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Character_Movement : MonoBehaviour
 {
@@ -36,6 +37,10 @@ public class Character_Movement : MonoBehaviour
         Player_Movement = GetComponent<Animator>();
 
         Player_Body = GetComponent<Rigidbody>();
+        /*
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        */
     }
 
     private void FixedUpdate()
@@ -46,9 +51,9 @@ public class Character_Movement : MonoBehaviour
 
         Character_Control();
         Character_Rotation();
-
-        
-
+        Character_Attacks();
+        Character_Jump();
+        Is_Holding();
     }
 
     public void Character_Control()
@@ -56,12 +61,12 @@ public class Character_Movement : MonoBehaviour
         if(Input.GetKey("left shift") == true)
         {
             He_Zoom = true;
-            Debug.Log("True");
+            //Debug.Log("True");
         }
         else
         {
             He_Zoom = false;
-            Debug.Log("false");
+            //Debug.Log("false");
         }
         //quicker way to access WASD controls as opposed to nested if statements
         float X_Movement = Input.GetAxis("Horizontal");
@@ -82,51 +87,52 @@ public class Character_Movement : MonoBehaviour
         
         if(Z_Movement >= 0.1)
         {
-            Player_Body.AddRelativeForce(Vector3.forward.normalized * -Character_Walk_Speed, ForceMode.VelocityChange);
+            Player_Body.AddRelativeForce(Vector3.forward * Character_Walk_Speed, ForceMode.VelocityChange);
             Player_Movement.SetBool("Is_Walking", true);
 
         }
+        /*
         if(Z_Movement >= 0.1 && He_Zoom == true)
         {
             
             Player_Movement.SetBool("Is_Walking", false);
             Player_Movement.SetBool("Is_Running", true);
-            Player_Body.AddForce(Vector3.forward.normalized * -Character_Run_Speed, ForceMode.VelocityChange);
-            //Debug.Log("Run trigger");
+            Player_Body.AddRelativeForce(Vector3.forward * -Character_Run_Speed, ForceMode.VelocityChange);
+            Debug.Log("Run trigger");
 
         }
-
+        */
         if(Z_Movement < 0)
         {
-            Player_Body.AddRelativeForce(Vector3.forward.normalized * Character_Walk_Speed, ForceMode.VelocityChange);
+            Player_Body.AddRelativeForce(Vector3.forward * -Character_Walk_Speed, ForceMode.VelocityChange);
             Player_Movement.SetBool("Is_Walking", false);
             Player_Movement.SetBool("Is_Walking_Back", true);
 
-        }
+        }/*
         if(Z_Movement < 0 && Input.GetKey("left shift") == true)
         {
             Player_Movement.SetBool("Is_Walking_Back", false);
             Player_Movement.SetBool("Is_Running_Back", true);
-            Player_Body.AddForce(Vector3.forward.normalized * Character_Run_Speed, ForceMode.VelocityChange);
-            //Debug.Log("Run trigger");
+            Player_Body.AddForce(Vector3.forward * Character_Run_Speed, ForceMode.VelocityChange);
+            Debug.Log("Back Run trigger");
         }
-
+        */
         if(X_Movement >= 0.1)
         {
-            Player_Body.AddRelativeForce(Vector3.right.normalized * Character_Walk_Speed, ForceMode.VelocityChange);
+            Player_Body.AddRelativeForce(Vector3.right * Character_Walk_Speed, ForceMode.VelocityChange);
             Player_Movement.SetBool("Strafe_Right", true);
             Player_Movement.SetBool("Strafe_Left", false);
         }
 
         if(X_Movement < 0)
         {
-            Player_Body.AddRelativeForce(Vector3.right.normalized * -Character_Walk_Speed, ForceMode.VelocityChange);
+            Player_Body.AddRelativeForce(Vector3.right * -Character_Walk_Speed, ForceMode.VelocityChange);
             Player_Movement.SetBool("Strafe_Left", true);
             Player_Movement.SetBool("Strafe_Right", false);
         }
         
         //.AddRelativeForce fixed the sideways movement issue. Think it had something to do with local/world vector differences
-
+        //Fix quit working for some reason. Multiplying strafe value gives it enough to ovverride what im guessing is a drag issue
     }
 
     public void Character_Rotation()
@@ -159,6 +165,47 @@ public class Character_Movement : MonoBehaviour
 
     }
 
-    
+    public void Character_Jump()
+    {
+        if (Input.GetKey(KeyCode.Space) == true)
+        {
+            Player_Movement.SetBool("Is_Jumping", true);
+            Player_Body.AddRelativeForce(Vector3.up * Character_Walk_Speed, ForceMode.Impulse);
+        }
+        else
+        {
+            Player_Movement.SetBool("Is_Jumping", false);
+        }
+    }
+
+    public void Character_Attacks()
+    {
+        bool Attack_Trigger = Input.GetMouseButton(0);
+
+        Debug.Log(Attack_Trigger);
+
+        if (Attack_Trigger == true)
+        {
+            Player_Movement.SetBool("Is_Attacking", true);
+        }
+        else
+        {
+            Player_Movement.SetBool("Is_Attacking", false);
+        }
+    }
+
+    public bool Is_Holding()
+    {
+        GameObject Weapon = GameObject.Find("Hand");
+
+        if (Weapon.transform.childCount == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
     
 }

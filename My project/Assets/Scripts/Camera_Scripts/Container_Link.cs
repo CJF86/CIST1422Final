@@ -20,7 +20,7 @@ public class Container_Link : MonoBehaviour
     {
         Player_Eyes = GameObject.Find("Man_Eyes_Mesh").transform;
 
-        transform.position = Player_Eyes.transform.position;
+        //transform.position = Player_Eyes.transform.position;
 
         transform.rotation = Player_Eyes.transform.rotation;
 

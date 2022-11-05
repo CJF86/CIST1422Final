@@ -16,7 +16,7 @@ public class Camera_Link : MonoBehaviour
 
         Selection_Scene = SceneManager.GetActiveScene().name;
 
-        
+        transform.Rotate(-90, 0, -180);
     }
 
     // Update is called once per frame
