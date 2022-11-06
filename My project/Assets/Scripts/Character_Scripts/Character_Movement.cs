@@ -37,10 +37,10 @@ public class Character_Movement : MonoBehaviour
         Player_Movement = GetComponent<Animator>();
 
         Player_Body = GetComponent<Rigidbody>();
-        /*
+        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        */
+        
     }
 
     private void FixedUpdate()
@@ -182,7 +182,7 @@ public class Character_Movement : MonoBehaviour
     {
         bool Attack_Trigger = Input.GetMouseButton(0);
 
-        Debug.Log(Attack_Trigger);
+        //Debug.Log(Attack_Trigger);
 
         if (Attack_Trigger == true)
         {

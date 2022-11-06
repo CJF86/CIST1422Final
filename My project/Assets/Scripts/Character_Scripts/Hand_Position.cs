@@ -12,7 +12,7 @@ public class Hand_Position : MonoBehaviour
     {
         
 
-        Debug.Log(Hand);
+        //Debug.Log(Hand);
         
         
     }

@@ -12,7 +12,7 @@ public class Weapon_Pickup : MonoBehaviour
 
     public Hand_Position Hand_Position;
 
-    public Player_Health Player_Health;
+    //public Player_Health Player_Health;
 
 
 
@@ -34,12 +34,12 @@ public class Weapon_Pickup : MonoBehaviour
         {
 
             Pick_Up = true;
-            Debug.Log(Pick_Up);
+            //Debug.Log(Pick_Up);
         }
         if(Input.GetKeyUp(KeyCode.E)==true)
         {
             Pick_Up = false;
-            Debug.Log(Pick_Up);
+            //Debug.Log(Pick_Up);
         }
     }
     // Update is called once per frame
@@ -59,7 +59,7 @@ public class Weapon_Pickup : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && Pick_Up==true)
         {
-            Debug.Log("Collision trigger");
+            //Debug.Log("Collision trigger");
 
             transform.position = Player_Hand.transform.position;
 
@@ -71,9 +71,15 @@ public class Weapon_Pickup : MonoBehaviour
 
             Player_Hand.transform.Translate(0f,-0.123f,0.049f);
 
-            Player_Health.Instance.Total_Health += 10;
+            //Player_Health.Instance.Total_Health += 10;
+            
+            
+            
+            //Debug.Log(Player_Health.Instance.Total_Health);
         }
         
     }
+
     
+
 }
