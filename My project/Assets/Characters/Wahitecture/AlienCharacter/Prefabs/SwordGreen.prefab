@@ -110,4 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0685a98b44a93a54fa8e863dc622df1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player_Hand: {fileID: 0}
+  Current_Character: {fileID: 0}
+  Hand_Position: {fileID: 0}
+  Character_Movement: {fileID: 0}
+  Original_Rotation: {x: 0, y: 0, z: 0, w: 0}
+  Pick_Up: 0

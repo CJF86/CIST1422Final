@@ -29,18 +29,18 @@ public class Player_Health : MonoBehaviour
     public void OnCollisionEnter(Collision collision)
     {
         
-        Debug.Log("Event being triggered");
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log("Event being triggered");
+        //Debug.Log(collision.gameObject.name);
         
         //public GameObject Go = collision.transform.parent.gameObject;
 
         if (collision.gameObject.name == "SwordBlue")
         {
-            Debug.Log("first trigger");
+            //Debug.Log("first trigger");
             if (collision.transform.parent is null)
             {
                 Total_Health += 15;
-                Debug.Log("not held");
+                //Debug.Log("not held");
             }
 
         }
@@ -53,10 +53,10 @@ public class Player_Health : MonoBehaviour
 
         if (collision.gameObject.name == "SwordGreen")
         {
-            Debug.Log("first trigger");
+            //Debug.Log("first trigger");
             if (collision.transform.parent is null)
             {
-                Debug.Log("not held");
+                //Debug.Log("not held");
                 Total_Health += 20;
             }
 
@@ -70,10 +70,10 @@ public class Player_Health : MonoBehaviour
 
         if (collision.gameObject.name == "SwordRed")
         {
-            Debug.Log("first trigger");
+            //Debug.Log("first trigger");
             if (collision.transform.parent is null)
             {
-                Debug.Log("not held");
+                //Debug.Log("not held");
                 Total_Health += 25;
             }
 

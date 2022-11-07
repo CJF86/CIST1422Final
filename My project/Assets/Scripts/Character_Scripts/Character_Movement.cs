@@ -25,7 +25,7 @@ public class Character_Movement : MonoBehaviour
 
     public float Mouse_Value;
 
-    
+    public static Character_Movement Instance;
 
     public float Mouse_X;
 
@@ -40,6 +40,8 @@ public class Character_Movement : MonoBehaviour
         
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        Instance = this;
         
     }
 
@@ -54,6 +56,7 @@ public class Character_Movement : MonoBehaviour
         Character_Attacks();
         Character_Jump();
         Is_Holding();
+        Debug.Log(Is_Holding());
     }
 
     public void Character_Control()
@@ -61,12 +64,12 @@ public class Character_Movement : MonoBehaviour
         if(Input.GetKey("left shift") == true)
         {
             He_Zoom = true;
-            //Debug.Log("True");
+            
         }
         else
         {
             He_Zoom = false;
-            //Debug.Log("false");
+            
         }
         //quicker way to access WASD controls as opposed to nested if statements
         float X_Movement = Input.GetAxis("Horizontal");
@@ -182,7 +185,7 @@ public class Character_Movement : MonoBehaviour
     {
         bool Attack_Trigger = Input.GetMouseButton(0);
 
-        //Debug.Log(Attack_Trigger);
+        
 
         if (Attack_Trigger == true)
         {

@@ -12,23 +12,25 @@ public class Weapon_Pickup : MonoBehaviour
 
     public Hand_Position Hand_Position;
 
-    //public Player_Health Player_Health;
+    public Character_Movement Character_Movement;
 
-
+    public Transform Parent_Weapon;
 
     public bool Pick_Up = false;
     void Start()
     {
-        //Player_Hand = transform.Find("Hand");
+        Parent_Weapon = gameObject.transform;
 
-        Current_Character = GameObject.FindGameObjectWithTag("Player");
+        
 
         
         
     }
     public void Update()
     {
-        
+        Current_Character = GameObject.FindWithTag("Player");
+
+        Debug.Log(Parent_Weapon.name);
 
         if (Input.GetKeyDown(KeyCode.E) == true)
         {
@@ -46,9 +48,9 @@ public class Weapon_Pickup : MonoBehaviour
     void LateUpdate()
     {
         Player_Hand = GameObject.Find("Hand");
-        //Player_Hand = //Current_Character.transform.GetChild(0);
-
-        //Debug.Log(Player_Hand.name);
+        
+        Weapon_Drop();
+        //Debug.Log(gameObject.name);
         
         
 
@@ -65,19 +67,31 @@ public class Weapon_Pickup : MonoBehaviour
 
             gameObject.transform.parent = Player_Hand.transform;
 
+            Debug.Log(gameObject.name);
+
             transform.rotation = Player_Hand.transform.rotation;
 
             Player_Hand.transform.Rotate(70, 0, 0);
 
             Player_Hand.transform.Translate(0f,-0.123f,0.049f);
 
-            //Player_Health.Instance.Total_Health += 10;
-            
-            
-            
-            //Debug.Log(Player_Health.Instance.Total_Health);
+           
         }
         
+    }
+
+    public void Weapon_Drop()
+    {
+        if (Input.GetKeyDown(KeyCode.X)==true && gameObject.transform.parent is not null)
+        {
+            //Debug.Log("Dropping weapon");
+            Player_Hand.transform.DetachChildren();
+            Player_Hand.transform.Rotate(-70, 0, 0);
+
+            Parent_Weapon.transform.position = Current_Character.transform.position;
+            Parent_Weapon.transform.rotation = Quaternion.identity;
+            Debug.Log(Parent_Weapon.name);
+        }
     }
 
     
