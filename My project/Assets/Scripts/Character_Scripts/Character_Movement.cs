@@ -56,7 +56,7 @@ public class Character_Movement : MonoBehaviour
         Character_Attacks();
         Character_Jump();
         Is_Holding();
-        Debug.Log(Is_Holding());
+        //Debug.Log(Is_Holding());
     }
 
     public void Character_Control()

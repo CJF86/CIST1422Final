@@ -20,10 +20,10 @@ public class Character_Cycling : MonoBehaviour
 
     public int Character_Selection = 1;
 
-    //public bool Character_Destruction = false;
-    // Start is called before the first frame update
+    
 
-    public void Start()
+    //changed from start to awake
+    public void Awake()
     {
         Transform Character_Spot = GameObject.Find("Character_Pos").transform;
 
