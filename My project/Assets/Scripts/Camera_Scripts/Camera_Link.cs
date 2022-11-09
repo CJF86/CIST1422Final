@@ -17,6 +17,8 @@ public class Camera_Link : MonoBehaviour
         Selection_Scene = SceneManager.GetActiveScene().name;
 
         transform.Rotate(-90, 0, -180);
+
+        Selection_Camera = GameObject.Find("Selection_Camera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class Camera_Link : MonoBehaviour
     {
         transform.position = Camera_Container.transform.position;
 
-        //Camera_Control();
+        Camera_Control();
         
     }
 
@@ -39,6 +41,11 @@ public class Camera_Link : MonoBehaviour
         {
             Selection_Camera.enabled = false;
             Player_Camera.enabled = true;
+            
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        
+
         }
 
 

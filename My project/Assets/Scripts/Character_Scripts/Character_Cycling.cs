@@ -18,7 +18,7 @@ public class Character_Cycling : MonoBehaviour
 
     public Vector3 Pos_Trans;
 
-    public int Character_Selection = 1;
+    public int Character_Selection = 0;
 
     
 
@@ -37,11 +37,12 @@ public class Character_Cycling : MonoBehaviour
     }
     public void Forward_Choice()
     {
-        Player_Character = Character_Array[Character_Selection];
-
+        
         Destroy(Character);
     
         Character_Selection = (Character_Selection + 1) % Character_Array.Length;
+
+        Player_Character = Character_Array[Character_Selection];
 
         Character = Instantiate(Player_Character,Pos_Trans,Quaternion.identity) as GameObject;
 
@@ -51,7 +52,7 @@ public class Character_Cycling : MonoBehaviour
 
         //Character.transform.Translate(Vector3.up * -15);
 
-        Debug.Log("Forward Button being pressed");
+        Debug.Log(Character_Selection);
 
     }
 
@@ -80,10 +81,11 @@ public class Character_Cycling : MonoBehaviour
     public void Start_Game()
     {
         PlayerPrefs.SetInt("Character_Selection", Character_Selection);
+        Debug.Log("Should be " + Character_Selection);
         SceneManager.LoadScene("Prison_Scene",LoadSceneMode.Single);
 
     }
 
-    // Update is called once per frame
+    
    
 }

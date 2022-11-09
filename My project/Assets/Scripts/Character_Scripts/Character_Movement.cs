@@ -38,8 +38,10 @@ public class Character_Movement : MonoBehaviour
 
         Player_Body = GetComponent<Rigidbody>();
         
+        /*
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        */
 
         Instance = this;
         

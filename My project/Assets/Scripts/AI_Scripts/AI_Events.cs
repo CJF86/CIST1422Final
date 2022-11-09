@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+//This script handles basic AI pathing and animations
 public class AI_Events : MonoBehaviour
 {
     public Animator AI_Animator;
@@ -19,7 +20,7 @@ public class AI_Events : MonoBehaviour
 
     public LayerMask Player;
 
-    public bool Destination_Set;
+    public bool Destination_Set = false;
 
     //public float Attack_Timing;
 
@@ -44,24 +45,41 @@ public class AI_Events : MonoBehaviour
     
     void Update()
     {
+        //RaycastHit Hit;
+
         Current_Player = GameObject.FindGameObjectWithTag("Player").transform;
 
        
-
-        
-
         In_Attack_Range = Physics.CheckSphere(transform.position, Player_Attack_Range, Player);
-
+        Debug.Log("Can attack" + In_Attack_Range);
         In_Sight_Range = Physics.CheckSphere(transform.position, Player_Sight_Range, Player);
+        Debug.Log("Can see" + In_Sight_Range);
 
-        Debug.Log("Can see " + In_Sight_Range);
-        
 
-        if (In_Sight_Range==false)
+        if (In_Sight_Range==false && In_Attack_Range == false)
         {
             Debug.Log("Patrol Trigger");
             Patrol_State();
         }
+
+        if(In_Sight_Range == true && In_Attack_Range == false)
+        {
+            AI_Animator.SetBool("AI_Walking", false);
+            AI_Animator.SetBool("AI_Attacking", false);
+            Debug.Log("Chase Trigger");
+            Chase_State();
+        }
+
+        if(In_Attack_Range == true)
+        {
+            AI_Animator.SetBool("AI_Walking", false);
+            Debug.Log("Attack Trigger");
+            Attack_State();
+
+        }
+
+        
+        
 
     }
 
@@ -71,7 +89,10 @@ public class AI_Events : MonoBehaviour
         float Z_Point = Random.Range(-Point_Range, Point_Range);
         Vector3 Movement_Sum = transform.position - AI_Destination;
 
-        AI_Destination = new Vector3(transform.position.x + X_Point, transform.position.y, transform.position.z + Z_Point);
+        if(Destination_Set == false)
+        {
+            AI_Destination = new Vector3(transform.position.x + X_Point, transform.position.y, transform.position.z + Z_Point);
+        }
 
         if (Physics.Raycast(AI_Destination, -Vector3.up,2.0f, Ground))
         {
@@ -83,9 +104,11 @@ public class AI_Events : MonoBehaviour
         if(Movement_Sum.magnitude <1f)
         {
             Destination_Set = false;
-            AI_Animator.SetBool("AI_Walking", false); 
+            AI_Animator.SetBool("AI_Walking", false);
+            //Debug.Log("AI_Walking trigger false");
         }
 
+        
         AI_Animator.SetBool("AI_Walking", true);
         AI_Agent.SetDestination(AI_Destination);
 
@@ -94,23 +117,20 @@ public class AI_Events : MonoBehaviour
 
     public void Chase_State()
     {
-        if (In_Sight_Range == true)
-        {
-            AI_Animator.SetBool("AI_Running", true);
-            AI_Agent.SetDestination(Current_Player.transform.position);
-        }
+        AI_Animator.SetBool("AI_Running", true);
+        AI_Agent.SetDestination(Current_Player.transform.position);
+        Debug.Log("Chasing");
+        
     }
 
     public void Attack_State()
     {
-        if(In_Sight_Range == true && In_Attack_Range == true)
-        {
-            AI_Animator.SetBool("AI_Attacking", true);
-        }
-
-        if (!In_Attack_Range)
-        {
-            AI_Animator.SetBool("AI_Attacking", false);
-        }
+        AI_Animator.SetBool("AI_Running", false);
+        AI_Animator.SetBool("AI_Attacking", true);
+        
+        Debug.Log("Attacking");
+        
+            
+        
     }
 }
