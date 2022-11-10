@@ -15,7 +15,7 @@ public class Character_Movement : MonoBehaviour
 
     public float Character_Walk_Speed = 1f;
 
-    public float Character_Turn_Speed = 5f;
+    public float Character_Turn_Speed = 15f;
 
     public float Character_Run_Speed = 5f;
 

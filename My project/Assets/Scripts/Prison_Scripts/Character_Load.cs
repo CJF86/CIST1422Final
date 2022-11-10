@@ -9,7 +9,7 @@ public class Character_Load : MonoBehaviour
     public Vector3 Pos_Trans;
     public GameObject Player_Character;
     // This script loads the chosen character from the start scene
-    void Start()
+    void Awake()
     {
         Transform Character_Spot = GameObject.Find("Character_Pos").transform;
 
