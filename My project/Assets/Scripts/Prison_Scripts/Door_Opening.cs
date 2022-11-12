@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class Door_Opening : MonoBehaviour
-{
+{ 
 
     public Transform Sliding_Door;
 
@@ -15,6 +15,10 @@ public class Door_Opening : MonoBehaviour
     float duration = 1.0f;
 
     public bool Door_Movement;
+
+    public bool Door_Trigger = false;
+
+    public float Door_Speed = 0.5f;
 
     void Start()
     {
@@ -30,6 +34,16 @@ public class Door_Opening : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E) == true)
+        {
+            Door_Trigger = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.E) == true)
+        {
+            Door_Trigger = false;
+        }
+        
         if(Door_Movement == true)
         {
             Debug.Log("Door is open");
@@ -42,7 +56,7 @@ public class Door_Opening : MonoBehaviour
     {
         Debug.Log("collision register");
 
-        if (collision.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.E)==true)
+        if (collision.gameObject.tag == "Player" && Door_Trigger ==true)
         {
             Debug.Log("Door is sliding");
             Door_Movement = true;
@@ -52,7 +66,7 @@ public class Door_Opening : MonoBehaviour
 
     public void Door_Open()
     {
-        Sliding_Door.transform.Translate(0f, 0f, 10f);
+        Sliding_Door.transform.Translate(-Vector3.forward*Time.deltaTime);
     }
 
     public void Light_Flicker()

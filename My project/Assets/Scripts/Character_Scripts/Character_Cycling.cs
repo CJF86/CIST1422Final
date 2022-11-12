@@ -52,13 +52,13 @@ public class Character_Cycling : MonoBehaviour
 
         //Character.transform.Translate(Vector3.up * -15);
 
-        Debug.Log(Character_Selection);
+        //Debug.Log(Character_Selection);
 
     }
 
     public void Backward_Choice()
     {
-        Player_Character = Character_Array[Character_Selection];
+        //Player_Character = Character_Array[Character_Selection];
 
         Destroy(Character);
 
@@ -69,13 +69,16 @@ public class Character_Cycling : MonoBehaviour
             Character_Selection += Character_Array.Length;
         }
 
+        Player_Character = Character_Array[Character_Selection];
+
         Character = Instantiate(Player_Character, Pos_Trans, Quaternion.identity) as GameObject;
 
         //Character.transform.position = Pos_Trans;
 
         Character.transform.Rotate(Vector3.up, 180);
 
-        Debug.Log("Backward Button being pressed");
+        Debug.Log(Character.name);
+        Debug.Log(Character_Selection);
     }
 
     public void Start_Game()

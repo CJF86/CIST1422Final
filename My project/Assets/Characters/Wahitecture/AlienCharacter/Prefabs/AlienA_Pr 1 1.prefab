@@ -236,6 +236,11 @@ GameObject:
   - component: {fileID: 902729354958917509}
   - component: {fileID: 903638798483447213}
   - component: {fileID: 2124971349173587834}
+  - component: {fileID: 959566028977666975}
+  - component: {fileID: -7244512245487122117}
+  - component: {fileID: -7692155540712152838}
+  - component: {fileID: -1675174524368802840}
+  - component: {fileID: 7036966005634681733}
   m_Layer: 0
   m_Name: AlienA_Pr 1 1
   m_TagString: Enemy
@@ -309,7 +314,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220003304927916651}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6773304772881eb4ab8d557e10ef058f, type: 3}
   m_Name: 
@@ -330,6 +335,8 @@ MonoBehaviour:
   In_Attack_Range: 0
   Point_Range: 5
   AI_Agent: {fileID: 0}
+  door_Opening: {fileID: 0}
+  AI_RigidBody: {fileID: 0}
 --- !u!54 &2124971349173587834
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -342,10 +349,135 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!65 &959566028977666975
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220003304927916651}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.66156, z: 0.52199936}
+  m_Center: {x: 0, y: 0.95932007, z: 0.13144112}
+--- !u!114 &-7244512245487122117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220003304927916651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ae067e3fdd0a845a561a09bebe1042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target_Choice: 0
+  Retarget: 0
+  jace_Targeting: {fileID: 0}
+  luke_Targeting: {fileID: 0}
+  aemond_Targeting: {fileID: 0}
+  Player_Targeting: {fileID: 0}
+  Script_Array: 00000000000000000000000000000000
+--- !u!114 &-7692155540712152838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220003304927916651}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e218f7141cf86c48ad27407d2ac2df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AI_Animator: {fileID: 0}
+  Player_Sight_Range: 15
+  Player_Attack_Range: 5
+  Current_Player: {fileID: 0}
+  AI_Destination: {x: 0, y: 0, z: 0}
+  Ground:
+    serializedVersion: 2
+    m_Bits: 128
+  Aemond:
+    serializedVersion: 2
+    m_Bits: 4096
+  Destination_Set: 0
+  In_Sight_Range: 0
+  In_Attack_Range: 0
+  Point_Range: 10
+  AI_Agent: {fileID: 0}
+  door_Opening: {fileID: 0}
+  AI_RigidBody: {fileID: 0}
+  Targeting: 0
+--- !u!114 &-1675174524368802840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220003304927916651}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ca973335007f74a93e0104b67afa6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AI_Animator: {fileID: 0}
+  Player_Sight_Range: 15
+  Player_Attack_Range: 5
+  Current_Player: {fileID: 0}
+  AI_Destination: {x: 0, y: 0, z: 0}
+  Ground:
+    serializedVersion: 2
+    m_Bits: 128
+  Luke:
+    serializedVersion: 2
+    m_Bits: 2048
+  Destination_Set: 0
+  In_Sight_Range: 0
+  In_Attack_Range: 0
+  Point_Range: 10
+  AI_Agent: {fileID: 0}
+  door_Opening: {fileID: 0}
+  AI_RigidBody: {fileID: 0}
+  Targeting: 0
+--- !u!114 &7036966005634681733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220003304927916651}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18b501e938034a24997334a6101be0f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AI_Animator: {fileID: 0}
+  Player_Sight_Range: 15
+  Player_Attack_Range: 5
+  Current_Player: {fileID: 0}
+  AI_Destination: {x: 0, y: 0, z: 0}
+  Ground:
+    serializedVersion: 2
+    m_Bits: 128
+  Jace:
+    serializedVersion: 2
+    m_Bits: 1024
+  Destination_Set: 0
+  In_Sight_Range: 0
+  In_Attack_Range: 0
+  Point_Range: 10
+  AI_Agent: {fileID: 0}
+  door_Opening: {fileID: 0}
+  AI_RigidBody: {fileID: 0}
+  Targeting: 0
 --- !u!1 &1238716689602110979
 GameObject:
   m_ObjectHideFlags: 0

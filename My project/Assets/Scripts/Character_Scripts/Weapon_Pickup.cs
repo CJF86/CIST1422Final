@@ -38,11 +38,13 @@ public class Weapon_Pickup : MonoBehaviour
             Pick_Up = true;
             //Debug.Log(Pick_Up);
         }
+        
         if(Input.GetKeyUp(KeyCode.E)==true)
         {
             Pick_Up = false;
             //Debug.Log(Pick_Up);
         }
+        
     }
     // Update is called once per frame
     void LateUpdate()

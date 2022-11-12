@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player_Health : MonoBehaviour
 {
     public float Total_Health;
+    public Component[] Clothes_Array;
     //public static Player_Health Instance;
     // Start is called before the first frame update
     void Start()
@@ -18,10 +19,17 @@ public class Player_Health : MonoBehaviour
     {
         if(Total_Health <= 0)
         {
-            Destroy(gameObject);
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+
+            Clothes_Array = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+
+            foreach (SkinnedMeshRenderer Cloth in Clothes_Array)
+            {
+                Cloth.enabled = false;
+            }
         }
 
-        Debug.Log(Total_Health);
+        //Debug.Log(Total_Health);
 
         
     }

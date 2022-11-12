@@ -16,6 +16,8 @@ public class AI_Events : MonoBehaviour
 
     public Vector3 AI_Destination;
 
+    public RaycastHit Hit;
+
     public LayerMask Ground;
 
     public LayerMask Player;
@@ -33,53 +35,77 @@ public class AI_Events : MonoBehaviour
     public float Point_Range = 10f;
 
     public NavMeshAgent AI_Agent;
+
+    public Door_Opening door_Opening;
+
+    public Rigidbody AI_RigidBody;
+
+   
     void Start()
     {
+        Debug.Log("Player Script Enabled");
+
+        AI_RigidBody = GetComponent<Rigidbody>();
+
         Current_Player = GameObject.FindGameObjectWithTag("Player").transform;
 
         AI_Animator = GetComponent<Animator>();
 
         AI_Agent = GetComponent<NavMeshAgent>();
+
+        door_Opening = GameObject.Find("Fusebox 02").GetComponent<Door_Opening>();
     }
 
     
     void Update()
     {
-        //RaycastHit Hit;
-
-        Current_Player = GameObject.FindGameObjectWithTag("Player").transform;
-
-       
-        In_Attack_Range = Physics.CheckSphere(transform.position, Player_Attack_Range, Player);
-        Debug.Log("Can attack" + In_Attack_Range);
         In_Sight_Range = Physics.CheckSphere(transform.position, Player_Sight_Range, Player);
-        Debug.Log("Can see" + In_Sight_Range);
 
+        In_Attack_Range = Physics.CheckSphere(transform.position, Player_Attack_Range, Player);
 
-        if (In_Sight_Range==false && In_Attack_Range == false)
+        if (Current_Player.gameObject.GetComponent<BoxCollider>().enabled == false)
         {
-            Debug.Log("Patrol Trigger");
-            Patrol_State();
+            gameObject.GetComponent<AI_Events>().enabled = false;
+        }
+        if (door_Opening.Door_Movement == true && Current_Player.gameObject.GetComponent<BoxCollider>().enabled == true)
+        {
+            Current_Player = GameObject.FindGameObjectWithTag("Player").transform;
+
+            if (Current_Player.gameObject.activeInHierarchy == false)
+            {
+                gameObject.GetComponent<AI_Events>().enabled = false;
+            }
+
+            if (In_Sight_Range == false && In_Attack_Range == false)
+            {
+                AI_RigidBody.isKinematic = true;
+                Debug.Log("Patrol Trigger");
+                Patrol_State();
+            }
+
+            if (In_Sight_Range == true && In_Attack_Range == false)
+            {
+                AI_RigidBody.isKinematic = true;
+                AI_Animator.SetBool("AI_Walking", false);
+                AI_Animator.SetBool("AI_Attacking", false);
+                Debug.Log("Chase Trigger");
+                Chase_State();
+            }
+
+            if (In_Attack_Range == true)
+            {
+                AI_RigidBody.isKinematic = false;
+                AI_Animator.SetBool("AI_Walking", false);
+                Debug.Log("Attack Trigger");
+                Attack_State();
+
+            }
         }
 
-        if(In_Sight_Range == true && In_Attack_Range == false)
-        {
-            AI_Animator.SetBool("AI_Walking", false);
-            AI_Animator.SetBool("AI_Attacking", false);
-            Debug.Log("Chase Trigger");
-            Chase_State();
-        }
 
-        if(In_Attack_Range == true)
-        {
-            AI_Animator.SetBool("AI_Walking", false);
-            Debug.Log("Attack Trigger");
-            Attack_State();
 
-        }
 
-        
-        
+
 
     }
 
@@ -97,8 +123,8 @@ public class AI_Events : MonoBehaviour
         if (Physics.Raycast(AI_Destination, -Vector3.up,2.0f, Ground))
         {
             Destination_Set = true;
-            Debug.Log("Valid point");
-            Debug.Log("This is the "+Destination_Set);
+            //Debug.Log("Valid point");
+            //Debug.Log("This is the "+Destination_Set);
         }
 
         if(Movement_Sum.magnitude <1f)
@@ -117,20 +143,37 @@ public class AI_Events : MonoBehaviour
 
     public void Chase_State()
     {
-        AI_Animator.SetBool("AI_Running", true);
-        AI_Agent.SetDestination(Current_Player.transform.position);
-        Debug.Log("Chasing");
+       
+            //Debug.Log(Random_Targeting);
+            AI_Animator.SetBool("AI_Running", true);
+            AI_Agent.SetDestination(Current_Player.transform.position);
+            Debug.Log("Chasing");
+            transform.LookAt(Current_Player);
         
     }
 
     public void Attack_State()
     {
+        
+        //Random_Targeting = Random.Range(0, Current_Player.Length);
+        //Debug.Log("Attack state "+Random_Targeting);
         AI_Animator.SetBool("AI_Running", false);
         AI_Animator.SetBool("AI_Attacking", true);
-        
-        Debug.Log("Attacking");
-        
-            
+        transform.LookAt(Current_Player);
+        Debug.Log("Attacking");      
         
     }
+
+    public void Target_Switch()
+    {
+        if(Current_Player is null)
+        {
+
+            gameObject.GetComponent<AI_Events>().enabled = false;
+            
+        }
+        
+    }
+
+    
 }
