@@ -7,7 +7,11 @@ public class Character_Movement : MonoBehaviour
 {
     public Animator Player_Movement;
 
-    //public int Turn_Control = 1;
+    public AudioSource Player_Audio;
+
+    public AudioClip Walking_Sound;
+
+    public AudioClip Attacking_Sound;
 
     public Rigidbody Player_Body;
 
@@ -37,12 +41,12 @@ public class Character_Movement : MonoBehaviour
         Player_Movement = GetComponent<Animator>();
 
         Player_Body = GetComponent<Rigidbody>();
-        
+
         /*
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         */
-
+        //Player_Audio = GetComponent<AudioSource>();
         Instance = this;
         
     }
@@ -94,6 +98,12 @@ public class Character_Movement : MonoBehaviour
         {
             Player_Body.AddRelativeForce(Vector3.forward * Character_Walk_Speed, ForceMode.VelocityChange);
             Player_Movement.SetBool("Is_Walking", true);
+            if (Player_Audio.isPlaying == false)
+            {
+                Player_Audio.PlayOneShot(Walking_Sound);
+            }
+
+
 
         }
         /*
@@ -112,6 +122,10 @@ public class Character_Movement : MonoBehaviour
             Player_Body.AddRelativeForce(Vector3.forward * -Character_Walk_Speed, ForceMode.VelocityChange);
             Player_Movement.SetBool("Is_Walking", false);
             Player_Movement.SetBool("Is_Walking_Back", true);
+            if (Player_Audio.isPlaying == false)
+            {
+                Player_Audio.PlayOneShot(Walking_Sound);
+            }
 
         }/*
         if(Z_Movement < 0 && Input.GetKey("left shift") == true)
@@ -127,6 +141,10 @@ public class Character_Movement : MonoBehaviour
             Player_Body.AddRelativeForce(Vector3.right * Character_Walk_Speed, ForceMode.VelocityChange);
             Player_Movement.SetBool("Strafe_Right", true);
             Player_Movement.SetBool("Strafe_Left", false);
+            if (Player_Audio.isPlaying == false)
+            {
+                Player_Audio.PlayOneShot(Walking_Sound);
+            }
         }
 
         if(X_Movement < 0)
@@ -134,6 +152,10 @@ public class Character_Movement : MonoBehaviour
             Player_Body.AddRelativeForce(Vector3.right * -Character_Walk_Speed, ForceMode.VelocityChange);
             Player_Movement.SetBool("Strafe_Left", true);
             Player_Movement.SetBool("Strafe_Right", false);
+            if (Player_Audio.isPlaying == false)
+            {
+                Player_Audio.PlayOneShot(Walking_Sound);
+            }
         }
         
         //.AddRelativeForce fixed the sideways movement issue. Think it had something to do with local/world vector differences
@@ -186,17 +208,24 @@ public class Character_Movement : MonoBehaviour
     public void Character_Attacks()
     {
         bool Attack_Trigger = Input.GetMouseButton(0);
-
+        //bool Audio_Trigger = false;
         
 
         if (Attack_Trigger == true)
         {
             Player_Movement.SetBool("Is_Attacking", true);
+            if (Player_Audio.isPlaying == false)
+            {
+                Player_Audio.PlayOneShot(Attacking_Sound);
+            }
         }
         else
         {
             Player_Movement.SetBool("Is_Attacking", false);
+            //Audio_Trigger = false;
         }
+
+        
     }
 
     public bool Is_Holding()
@@ -212,5 +241,7 @@ public class Character_Movement : MonoBehaviour
             return true;
         }
     }
+
+    
     
 }

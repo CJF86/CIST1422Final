@@ -7,10 +7,13 @@ public class Electrical_Mini : MonoBehaviour
     public MeshRenderer Switch_Color;
     public bool Is_Active;
     public RaycastHit Hit;
+    public AudioSource Button_Audio;
+    public AudioClip Press_Audio;
     // Start is called before the first frame update
     void Start()
     {
         Switch_Color = gameObject.GetComponent<MeshRenderer>();
+        Button_Audio = gameObject.GetComponent<AudioSource>();
         Is_Active = false;
 
     }
@@ -38,6 +41,7 @@ public class Electrical_Mini : MonoBehaviour
             Is_Active = false;
             Debug.Log(Is_Active);
             Debug.Log("Switch being pressed");
+            Button_Audio.PlayOneShot(Press_Audio);
         }
 
         if (Switch_Color.material.color == Color.red)
@@ -45,6 +49,7 @@ public class Electrical_Mini : MonoBehaviour
             Is_Active = true;
             Debug.Log(Is_Active);
             Debug.Log("Switch being pressed");
+            Button_Audio.PlayOneShot(Press_Audio);
         }
 
     }

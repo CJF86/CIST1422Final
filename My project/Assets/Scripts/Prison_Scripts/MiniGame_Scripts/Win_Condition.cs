@@ -11,11 +11,14 @@ public class Win_Condition : MonoBehaviour
     public Transform Switch3;
     public Transform Switch4;
     public Transform Switch5;
+    public AudioSource Short_Circuit;
+    public AudioClip Breaker_Sound;
 
     public Electrical_Mini Electrical_Check;
 
     void Start()
     {
+        Short_Circuit = GetComponent<AudioSource>();
         Switch1 = transform.Find("Switch1");
         Switch2 = transform.Find("Switch2");
         Switch3 = transform.Find("Switch3");
@@ -34,6 +37,7 @@ public class Win_Condition : MonoBehaviour
         if(Switch1.GetComponent<Electrical_Mini>().Is_Active == false && Switch2.GetComponent<Electrical_Mini>().Is_Active == true && Switch3.GetComponent<Electrical_Mini>().Is_Active == true && Switch4.GetComponent<Electrical_Mini>().Is_Active == false && Switch5.GetComponent<Electrical_Mini>().Is_Active == true)
         {
             Code_Cracked = true;
+            Short_Circuit.PlayOneShot(Breaker_Sound);
             
         }
         else

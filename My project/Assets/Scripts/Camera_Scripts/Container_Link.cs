@@ -10,6 +10,10 @@ public class Container_Link : MonoBehaviour
     public float Mouse_Value;
     public GameObject Player_Character;
     public bool Script_Active = true;
+    public AudioSource Player_Audio;
+    public AudioClip Walking_Sound;
+
+    public AudioClip Attacking_Sound;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,4 +75,6 @@ public class Container_Link : MonoBehaviour
         Player_Eyes.transform.Rotate(Turn_Vector, Space.Self);
 
     }
+
+    
 }
