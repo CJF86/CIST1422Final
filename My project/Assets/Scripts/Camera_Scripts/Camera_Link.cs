@@ -9,10 +9,12 @@ public class Camera_Link : MonoBehaviour
     public Camera Player_Camera;
     public Transform Camera_Container;
     public string Selection_Scene;
-    
+    public Container_Link Container;
     void Start()
     {
         Camera_Container = GameObject.Find("Camera_Pos").transform;
+
+        Container = Camera_Container.GetComponent<Container_Link>();
 
         Selection_Scene = SceneManager.GetActiveScene().name;
 
@@ -26,7 +28,17 @@ public class Camera_Link : MonoBehaviour
     {
         transform.position = Camera_Container.transform.position;
 
-        Camera_Control();
+        if(Container.Script_Active == true)
+        {
+            Camera_Control();
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+
+        
         
     }
 

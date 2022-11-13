@@ -49,7 +49,7 @@ public class Luke_Target : MonoBehaviour
         AI_Agent = GetComponent<NavMeshAgent>();
 
         door_Opening = GameObject.Find("Fusebox 02").GetComponent<Door_Opening>();
-        Debug.Log(Current_Player.name);
+        //Debug.Log(Current_Player.name);
     }
 
 

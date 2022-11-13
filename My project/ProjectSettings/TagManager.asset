@@ -12,6 +12,8 @@ TagManager:
   - Jace
   - Luke
   - Aemond
+  - MiniGameCamera
+  - Electrical
   layers:
   - Default
   - TransparentFX

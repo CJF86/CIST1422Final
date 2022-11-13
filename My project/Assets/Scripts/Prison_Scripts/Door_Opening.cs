@@ -4,7 +4,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class Door_Opening : MonoBehaviour
-{ 
+{
+    public Camera Player_Cam;
+
+    public Camera Mini_Cam;
 
     public Transform Sliding_Door;
 
@@ -16,9 +19,13 @@ public class Door_Opening : MonoBehaviour
 
     public bool Door_Movement;
 
+    
+
     public bool Door_Trigger = false;
 
     public float Door_Speed = 0.5f;
+
+    public Win_Condition Door_Puzzle;
 
     void Start()
     {
@@ -28,12 +35,18 @@ public class Door_Opening : MonoBehaviour
 
         Warning_Light = GameObject.FindGameObjectWithTag("Wall_Light").GetComponent<Light>();
 
-        Debug.Log(Warning_Light.name);
+        Player_Cam = GameObject.Find("Camera_Pos").GetComponentInChildren<Camera>();
+
+        Mini_Cam = GameObject.Find("Camera_Holder").GetComponentInChildren<Camera>();
+
+        Door_Puzzle = GameObject.Find("MiniGame").GetComponentInChildren<Win_Condition>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Door_Crack();
+
         if (Input.GetKeyDown(KeyCode.E) == true)
         {
             Door_Trigger = true;
@@ -59,8 +72,25 @@ public class Door_Opening : MonoBehaviour
         if (collision.gameObject.tag == "Player" && Door_Trigger ==true)
         {
             Debug.Log("Door is sliding");
-            Door_Movement = true;
+            collision.gameObject.GetComponent<Character_Movement>().enabled = false;
+
+            Player_Cam.enabled = false;
+            Mini_Cam.enabled = true;
+
             
+            
+        }
+    }
+
+    public void Door_Crack()
+    {
+        Debug.Log("Before loop");
+        if(Door_Puzzle.Code_Cracked == true)
+        {
+            Player.GetComponent<Character_Movement>().enabled = true;
+            Mini_Cam.enabled = false;
+            Player_Cam.enabled = true;
+            Door_Movement = true;
         }
     }
 

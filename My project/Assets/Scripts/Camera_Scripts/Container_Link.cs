@@ -8,6 +8,8 @@ public class Container_Link : MonoBehaviour
     public float Character_Turn_Speed = 10f;
     public float Y_Input;
     public float Mouse_Value;
+    public GameObject Player_Character;
+    public bool Script_Active = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +22,21 @@ public class Container_Link : MonoBehaviour
     {
         Player_Eyes = GameObject.Find("Man_Eyes_Mesh").transform;
 
+        Player_Character = GameObject.FindGameObjectWithTag("Player");
+
         //transform.position = Player_Eyes.transform.position;
 
         transform.rotation = Player_Eyes.transform.rotation;
+
+        if(Player_Character.GetComponent<Character_Movement>().enabled == false)
+        {
+            Script_Active = false;
+        }
+        else
+        {
+            Script_Active = true;
+        }
+
 
         Y_Rotation();
         
