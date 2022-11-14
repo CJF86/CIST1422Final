@@ -14,6 +14,8 @@ TagManager:
   - Aemond
   - MiniGameCamera
   - Electrical
+  - Lever
+  - Window
   layers:
   - Default
   - TransparentFX

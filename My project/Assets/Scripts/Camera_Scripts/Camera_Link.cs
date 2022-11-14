@@ -30,10 +30,12 @@ public class Camera_Link : MonoBehaviour
 
         if(Container.Script_Active == true)
         {
+            Debug.Log("Camera controlled");
             Camera_Control();
         }
         else
         {
+            Debug.Log("Camera error");
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }

@@ -10,10 +10,10 @@ public class Container_Link : MonoBehaviour
     public float Mouse_Value;
     public GameObject Player_Character;
     public bool Script_Active = true;
-    public AudioSource Player_Audio;
-    public AudioClip Walking_Sound;
+    //public AudioSource Player_Audio;
+    //public AudioClip Walking_Sound;
 
-    public AudioClip Attacking_Sound;
+    //public AudioClip Attacking_Sound;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,10 +34,12 @@ public class Container_Link : MonoBehaviour
 
         if(Player_Character.GetComponent<Character_Movement>().enabled == false)
         {
+            Debug.Log("Script is false");
             Script_Active = false;
         }
         else
         {
+            Debug.Log("Script is true");
             Script_Active = true;
         }
 
