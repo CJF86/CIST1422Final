@@ -13,6 +13,10 @@ public class Character_Movement : MonoBehaviour
 
     public AudioClip Attacking_Sound;
 
+    public AudioClip FiveG_Clip;
+
+    public AudioClip Bird_Drone;
+
     public Rigidbody Player_Body;
 
     public bool He_Zoom = false;
@@ -242,6 +246,25 @@ public class Character_Movement : MonoBehaviour
         }
     }
 
-    
-    
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.tag == "Aemond" && Input.GetKeyDown(KeyCode.E))
+        {
+            if (Player_Audio.isPlaying == false)
+            {
+                Player_Audio.PlayOneShot(FiveG_Clip);
+            }
+        }
+
+        if(collision.gameObject.tag == "Jace" && Input.GetKeyDown(KeyCode.E))
+        {
+            if (Player_Audio.isPlaying == false)
+            {
+                Player_Audio.PlayOneShot(Bird_Drone);
+            }
+        }
+    }
+
+
+
 }

@@ -19,7 +19,7 @@ public class Door_Opening : MonoBehaviour
 
     public bool Door_Movement;
 
-    
+    public Transform Secondary_Door;
 
     public bool Door_Trigger = false;
 
@@ -29,6 +29,7 @@ public class Door_Opening : MonoBehaviour
 
     void Start()
     {
+        Secondary_Door = GameObject.Find("PrisonDoor2").transform;
         Sliding_Door = GameObject.Find("Sliding_Door").transform;
 
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -97,6 +98,7 @@ public class Door_Opening : MonoBehaviour
     public void Door_Open()
     {
         Sliding_Door.transform.Translate(-Vector3.forward*Time.deltaTime);
+        Secondary_Door.transform.Translate(-Vector3.forward * Time.deltaTime);
     }
 
     public void Light_Flicker()

@@ -2047,6 +2047,8 @@ MonoBehaviour:
   Player_Audio: {fileID: 1643770514162979721}
   Walking_Sound: {fileID: 8300000, guid: 3701a5fdf99882f40bc00eb9053eec92, type: 3}
   Attacking_Sound: {fileID: 8300000, guid: b084521af24466e4b8bbf8743d5c2493, type: 3}
+  FiveG_Clip: {fileID: 8300000, guid: fdf74521ab826704eaf27d0193c35fd8, type: 3}
+  Bird_Drone: {fileID: 8300000, guid: 1a916b6dfc70293408911bd8113a1ef9, type: 3}
   Player_Body: {fileID: 0}
   He_Zoom: 0
   Character_Walk_Speed: 1
