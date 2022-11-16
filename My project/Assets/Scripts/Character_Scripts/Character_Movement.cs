@@ -110,17 +110,17 @@ public class Character_Movement : MonoBehaviour
 
 
         }
-        /*
+        
         if(Z_Movement >= 0.1 && He_Zoom == true)
         {
             
             Player_Movement.SetBool("Is_Walking", false);
             Player_Movement.SetBool("Is_Running", true);
-            Player_Body.AddRelativeForce(Vector3.forward * -Character_Run_Speed, ForceMode.VelocityChange);
+            Player_Body.AddRelativeForce(Vector3.forward * Character_Run_Speed, ForceMode.VelocityChange);
             Debug.Log("Run trigger");
 
         }
-        */
+        
         if(Z_Movement < 0)
         {
             Player_Body.AddRelativeForce(Vector3.forward * -Character_Walk_Speed, ForceMode.VelocityChange);
@@ -131,16 +131,17 @@ public class Character_Movement : MonoBehaviour
                 Player_Audio.PlayOneShot(Walking_Sound);
             }
 
-        }/*
-        if(Z_Movement < 0 && Input.GetKey("left shift") == true)
+        }
+        /*
+        if(Z_Movement < 0 && He_Zoom == true)
         {
             Player_Movement.SetBool("Is_Walking_Back", false);
             Player_Movement.SetBool("Is_Running_Back", true);
-            Player_Body.AddForce(Vector3.forward * Character_Run_Speed, ForceMode.VelocityChange);
+            Player_Body.AddForce(Vector3.forward * -Character_Run_Speed, ForceMode.VelocityChange);
             Debug.Log("Back Run trigger");
         }
         */
-        if(X_Movement >= 0.1)
+        if (X_Movement >= 0.1)
         {
             Player_Body.AddRelativeForce(Vector3.right * Character_Walk_Speed, ForceMode.VelocityChange);
             Player_Movement.SetBool("Strafe_Right", true);

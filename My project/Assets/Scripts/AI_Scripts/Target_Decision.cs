@@ -29,27 +29,27 @@ public class Target_Decision : MonoBehaviour
         aemond_Targeting = gameObject.GetComponent<Aemond_Target>();
         Player_Targeting = gameObject.GetComponent<AI_Events>();
 
-        if(Target_Choice == 1)
+        if(Target_Choice == 0)
         {
             luke_Targeting.enabled = true;
             //Script_Array.RemoveAt(Script_Array[0]);
             
         }
 
-        if(Target_Choice == 2)
+        if(Target_Choice == 1)
         {
             
             jace_Targeting.enabled = true;
             //Script_Array.RemoveAt(Script_Array[1]);
         }
 
-        if(Target_Choice == 3)
+        if(Target_Choice == 2)
         {
             aemond_Targeting.enabled = true;
             //Script_Array.RemoveAt(Script_Array[2]);
         }
 
-        if(Target_Choice == 4)
+        if(Target_Choice == 3)
         {
             Player_Targeting.enabled = true;
             //Script_Array.RemoveAt(Script_Array[3]);
@@ -80,25 +80,25 @@ public class Target_Decision : MonoBehaviour
         aemond_Targeting = gameObject.GetComponent<Aemond_Target>();
         Player_Targeting = gameObject.GetComponent<AI_Events>();
 
-        if (Target_Choice == 1)
+        if (Target_Choice == 0)
         {
             luke_Targeting.enabled = true;
             //Script_Array.RemoveAt(Script_Array[0]);
         }
 
-        if (Target_Choice == 2)
+        if (Target_Choice == 1)
         {
             jace_Targeting.enabled = true;
             //Script_Array.RemoveAt(Script_Array[1]);
         }
 
-        if (Target_Choice == 3)
+        if (Target_Choice == 2)
         {
             aemond_Targeting.enabled = true;
             //Script_Array.RemoveAt(Script_Array[2]);
         }
 
-        if (Target_Choice == 4)
+        if (Target_Choice == 3)
         {
             Player_Targeting.enabled = true;
             //Script_Array.RemoveAt(Script_Array[3]);
