@@ -8,9 +8,9 @@ public class AI_Events : MonoBehaviour
 {
     public Animator AI_Animator;
 
-    public float Player_Sight_Range = 15f;
+    private float Player_Sight_Range = 15f;
 
-    public float Player_Attack_Range = 5f;
+    private float Player_Attack_Range = 3f;
 
     public Transform Current_Player;
 
@@ -78,14 +78,14 @@ public class AI_Events : MonoBehaviour
 
             if (In_Sight_Range == false && In_Attack_Range == false)
             {
-                AI_RigidBody.isKinematic = true;
+                //AI_RigidBody.isKinematic = true;
                 Debug.Log("Patrol Trigger");
                 Patrol_State();
             }
 
             if (In_Sight_Range == true && In_Attack_Range == false)
             {
-                AI_RigidBody.isKinematic = true;
+                //AI_RigidBody.isKinematic = true;
                 AI_Animator.SetBool("AI_Walking", false);
                 AI_Animator.SetBool("AI_Attacking", false);
                 Debug.Log("Chase Trigger");
@@ -123,7 +123,7 @@ public class AI_Events : MonoBehaviour
         if (Physics.Raycast(AI_Destination, -Vector3.up,2.0f, Ground))
         {
             Destination_Set = true;
-            //Debug.Log("Valid point");
+            Debug.Log("Valid point");
             //Debug.Log("This is the "+Destination_Set);
         }
 
@@ -131,7 +131,8 @@ public class AI_Events : MonoBehaviour
         {
             Destination_Set = false;
             AI_Animator.SetBool("AI_Walking", false);
-            //Debug.Log("AI_Walking trigger false");
+            StartCoroutine("Wait_Time");
+            Debug.Log("Position reached");
         }
 
         
@@ -173,6 +174,11 @@ public class AI_Events : MonoBehaviour
             
         }
         
+    }
+
+    public IEnumerator Wait_Time()
+    {
+        yield return new WaitForSeconds(2f);
     }
 
     

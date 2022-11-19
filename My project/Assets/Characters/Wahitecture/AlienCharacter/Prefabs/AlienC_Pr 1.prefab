@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 5013717048945616373}
   - component: {fileID: 6283783498712548913}
   - component: {fileID: 2951739736398900761}
+  - component: {fileID: 8732497967041995377}
   m_Layer: 0
   m_Name: AlienC_Pr 1
   m_TagString: Enemy
@@ -123,7 +124,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120943486611743163}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6773304772881eb4ab8d557e10ef058f, type: 3}
   m_Name: 
@@ -287,6 +288,27 @@ MonoBehaviour:
   door_Opening: {fileID: 0}
   AI_RigidBody: {fileID: 0}
   Targeting: 0
+--- !u!114 &8732497967041995377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120943486611743163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fccb911d10bb3bc4699e738432feb102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Red_Weapon: {fileID: 1199318801596647708, guid: 0a9130e7a5f54ea4b90a31ba9317c388, type: 3}
+  Dropped_Weapon: {fileID: 0}
+  Red_Health: 0
+  Animator: {fileID: 0}
+  aemond: {fileID: 0}
+  Targeting: {fileID: 0}
+  Jace: {fileID: 0}
+  Luke: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!1 &136195272797289761
 GameObject:
   m_ObjectHideFlags: 0

@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: -7692155540712152838}
   - component: {fileID: -1675174524368802840}
   - component: {fileID: 7036966005634681733}
+  - component: {fileID: -3291149695049262419}
   m_Layer: 0
   m_Name: AlienA_Pr 1 1
   m_TagString: Enemy
@@ -478,6 +479,27 @@ MonoBehaviour:
   door_Opening: {fileID: 0}
   AI_RigidBody: {fileID: 0}
   Targeting: 0
+--- !u!114 &-3291149695049262419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220003304927916651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3817c33c0b5b565499051e88f6d37d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Green_Weapon: {fileID: 8446481794708754667, guid: 4548b554fb179584aa43bca535bb4820, type: 3}
+  Dropped_Weapon: {fileID: 0}
+  Purple_Health: 0
+  Animator: {fileID: 0}
+  aemond: {fileID: 0}
+  Targeting: {fileID: 0}
+  Jace: {fileID: 0}
+  Luke: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!1 &1238716689602110979
 GameObject:
   m_ObjectHideFlags: 0

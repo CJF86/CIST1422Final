@@ -6,9 +6,9 @@ public class Jace_Target : MonoBehaviour
 {
     public Animator AI_Animator;
 
-    public float Player_Sight_Range = 15f;
+    private float Player_Sight_Range = 15f;
 
-    public float Player_Attack_Range = 5f;
+    private float Player_Attack_Range = 3f;
 
     public Transform Current_Player;
 
@@ -79,14 +79,14 @@ public class Jace_Target : MonoBehaviour
 
             if (In_Sight_Range == false && In_Attack_Range == false)
             {
-                AI_RigidBody.isKinematic = true;
+                //AI_RigidBody.isKinematic = true;
                 Debug.Log("Patrol Trigger");
                 Patrol_State();
             }
 
             if (In_Sight_Range == true && In_Attack_Range == false)
             {
-                AI_RigidBody.isKinematic = true;
+                //AI_RigidBody.isKinematic = true;
                 AI_Animator.SetBool("AI_Walking", false);
                 AI_Animator.SetBool("AI_Attacking", false);
                 Debug.Log("Chase Trigger");

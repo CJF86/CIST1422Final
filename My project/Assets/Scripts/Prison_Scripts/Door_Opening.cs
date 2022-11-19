@@ -27,6 +27,8 @@ public class Door_Opening : MonoBehaviour
 
     public Win_Condition Door_Puzzle;
 
+    public Canvas PlayerGUI;
+
     void Start()
     {
         Secondary_Door = GameObject.Find("PrisonDoor2").transform;
@@ -41,6 +43,10 @@ public class Door_Opening : MonoBehaviour
         Mini_Cam = GameObject.Find("Camera_Holder").GetComponentInChildren<Camera>();
 
         Door_Puzzle = GameObject.Find("MiniGame").GetComponentInChildren<Win_Condition>();
+
+        PlayerGUI = GameObject.Find("PlayerGUI").GetComponent<Canvas>();
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
@@ -77,7 +83,7 @@ public class Door_Opening : MonoBehaviour
 
             Player_Cam.enabled = false;
             Mini_Cam.enabled = true;
-
+            PlayerGUI.enabled = false;
             
             
         }
@@ -89,6 +95,7 @@ public class Door_Opening : MonoBehaviour
         if(Door_Puzzle.Code_Cracked == true)
         {
             Player.GetComponent<Character_Movement>().enabled = true;
+            PlayerGUI.enabled = true;
             Mini_Cam.enabled = false;
             Player_Cam.enabled = true;
             Door_Movement = true;
