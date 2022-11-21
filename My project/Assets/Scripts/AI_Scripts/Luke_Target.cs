@@ -20,7 +20,8 @@ public class Luke_Target : MonoBehaviour
 
     public LayerMask Luke;
 
-    public bool Destination_Set = false;
+    [SerializeField]
+    private bool Destination_Set = false;
 
     public bool In_Sight_Range;
 
@@ -30,11 +31,13 @@ public class Luke_Target : MonoBehaviour
 
     public NavMeshAgent AI_Agent;
 
-    public Door_Opening door_Opening;
+    public Alarm_Trigger door_Opening;
 
     public Rigidbody AI_RigidBody;
 
     public bool Targeting;
+
+    private string Escape_Trigger;
 
     void Start()
     {
@@ -48,13 +51,16 @@ public class Luke_Target : MonoBehaviour
 
         AI_Agent = GetComponent<NavMeshAgent>();
 
-        door_Opening = GameObject.Find("Fusebox 02").GetComponent<Door_Opening>();
-        //Debug.Log(Current_Player.name);
+        door_Opening = GameObject.Find("AlarmTrigger").GetComponent<Alarm_Trigger>();
+
+        Escape_Trigger = PlayerPrefs.GetString("Escaped");
     }
 
 
     void Update()
     {
+        Debug.Log("String value" + Escape_Trigger);
+
         In_Sight_Range = Physics.CheckSphere(transform.position, Player_Sight_Range, Luke);
 
         In_Attack_Range = Physics.CheckSphere(transform.position, Player_Attack_Range, Luke);
@@ -62,9 +68,9 @@ public class Luke_Target : MonoBehaviour
         if (Current_Player.gameObject.GetComponent<BoxCollider>().enabled == false)
         {
             gameObject.GetComponent<Luke_Target>().enabled = false;
-            Debug.Log("Luke Script Disabled");
+            //Debug.Log("Luke Script Disabled");
         }
-        if (door_Opening.Door_Movement == true && Current_Player.gameObject.GetComponent<BoxCollider>().enabled == true)
+        if (door_Opening.Alarm==true && Current_Player.gameObject.GetComponent<BoxCollider>().enabled == true)
         {
             Current_Player = GameObject.FindGameObjectWithTag("Luke").transform;
 
@@ -73,7 +79,7 @@ public class Luke_Target : MonoBehaviour
             if (In_Sight_Range == false && In_Attack_Range == false)
             {
                 //AI_RigidBody.isKinematic = true;
-                Debug.Log("Patrol Trigger");
+                //Debug.Log("Patrol Trigger");
                 Patrol_State();
             }
 
@@ -82,7 +88,7 @@ public class Luke_Target : MonoBehaviour
                 //AI_RigidBody.isKinematic = true;
                 AI_Animator.SetBool("AI_Walking", false);
                 AI_Animator.SetBool("AI_Attacking", false);
-                Debug.Log("Chase Trigger");
+                //Debug.Log("Chase Trigger");
                 Chase_State();
             }
 
@@ -90,7 +96,7 @@ public class Luke_Target : MonoBehaviour
             {
                 AI_RigidBody.isKinematic = false;
                 AI_Animator.SetBool("AI_Walking", false);
-                Debug.Log("Attack Trigger");
+                //Debug.Log("Attack Trigger");
                 Attack_State();
 
             }
@@ -100,6 +106,8 @@ public class Luke_Target : MonoBehaviour
 
     public void Patrol_State()
     {
+        AI_Animator.SetBool("AI_Running", false);
+        AI_Animator.SetBool("AI_Attacking", false);
         float X_Point = Random.Range(-Point_Range, Point_Range);
         float Z_Point = Random.Range(-Point_Range, Point_Range);
         Vector3 Movement_Sum = transform.position - AI_Destination;
@@ -114,9 +122,10 @@ public class Luke_Target : MonoBehaviour
             Destination_Set = true;
             //Debug.Log("Valid point");
             //Debug.Log("This is the "+Destination_Set);
+            AI_Agent.SetDestination(AI_Destination);
         }
 
-        if (Movement_Sum.magnitude < 1f)
+        if (Movement_Sum.magnitude <= 1f)
         {
             Destination_Set = false;
             AI_Animator.SetBool("AI_Walking", false);
@@ -125,7 +134,7 @@ public class Luke_Target : MonoBehaviour
 
 
         AI_Animator.SetBool("AI_Walking", true);
-        AI_Agent.SetDestination(AI_Destination);
+        
 
 
     }
@@ -136,7 +145,7 @@ public class Luke_Target : MonoBehaviour
         //Debug.Log(Random_Targeting);
         AI_Animator.SetBool("AI_Running", true);
         AI_Agent.SetDestination(Current_Player.transform.position);
-        Debug.Log("Chasing");
+        //Debug.Log("Chasing");
         transform.LookAt(Current_Player);
 
     }
@@ -149,7 +158,7 @@ public class Luke_Target : MonoBehaviour
         AI_Animator.SetBool("AI_Running", false);
         AI_Animator.SetBool("AI_Attacking", true);
         transform.LookAt(Current_Player);
-        Debug.Log("Attacking");
+        //Debug.Log("Attacking");
 
     }
 

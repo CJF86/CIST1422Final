@@ -20,7 +20,8 @@ public class Aemond_Target : MonoBehaviour
 
     public LayerMask Aemond;
 
-    public bool Destination_Set = false;
+    [SerializeField]
+    private bool Destination_Set = false;
 
     public bool In_Sight_Range;
 
@@ -30,11 +31,13 @@ public class Aemond_Target : MonoBehaviour
 
     public NavMeshAgent AI_Agent;
 
-    public Door_Opening door_Opening;
+    public Alarm_Trigger door_Opening;
 
     public Rigidbody AI_RigidBody;
 
     public bool Targeting;
+
+    private string Escape_Trigger;
     
     void Start()
     {
@@ -48,13 +51,19 @@ public class Aemond_Target : MonoBehaviour
 
         AI_Agent = GetComponent<NavMeshAgent>();
 
-        door_Opening = GameObject.Find("Fusebox 02").GetComponent<Door_Opening>();
+        door_Opening = GameObject.Find("AlarmTrigger").GetComponent<Alarm_Trigger>();
+
+        Escape_Trigger = PlayerPrefs.GetString("Escaped");
+
+        
 
     }
 
     
     void Update()
     {
+        Debug.Log("String value" + Escape_Trigger);
+
         In_Sight_Range = Physics.CheckSphere(transform.position,Player_Sight_Range,Aemond);
 
         In_Attack_Range = Physics.CheckSphere(transform.position, Player_Attack_Range, Aemond);
@@ -64,7 +73,7 @@ public class Aemond_Target : MonoBehaviour
             gameObject.GetComponent<Aemond_Target>().enabled = false;
             Debug.Log("Aemond Script Disabled");
         }
-        if (door_Opening.Door_Movement == true && Current_Player.gameObject.GetComponent<BoxCollider>().enabled == true)
+        if (door_Opening.Alarm == true && Current_Player.gameObject.GetComponent<BoxCollider>().enabled == true)
         {
             Current_Player = GameObject.FindGameObjectWithTag("Aemond").transform;
 
@@ -73,7 +82,7 @@ public class Aemond_Target : MonoBehaviour
             if (In_Sight_Range == false && In_Attack_Range == false)
             {
                 //AI_RigidBody.isKinematic = true;
-                Debug.Log("Patrol Trigger");
+                //Debug.Log("Patrol Trigger");
                 Patrol_State();
             }
 
@@ -82,7 +91,7 @@ public class Aemond_Target : MonoBehaviour
                 //AI_RigidBody.isKinematic = true;
                 AI_Animator.SetBool("AI_Walking", false);
                 AI_Animator.SetBool("AI_Attacking", false);
-                Debug.Log("Chase Trigger");
+                //Debug.Log("Chase Trigger");
                 Chase_State();
             }
 
@@ -90,7 +99,7 @@ public class Aemond_Target : MonoBehaviour
             {
                 AI_RigidBody.isKinematic = false;
                 AI_Animator.SetBool("AI_Walking", false);
-                Debug.Log("Attack Trigger");
+                //Debug.Log("Attack Trigger");
                 Attack_State();
 
             }
@@ -102,6 +111,8 @@ public class Aemond_Target : MonoBehaviour
 
     public void Patrol_State()
     {
+        AI_Animator.SetBool("AI_Running", false);
+        AI_Animator.SetBool("AI_Attacking", false);
         float X_Point = Random.Range(-Point_Range, Point_Range);
         float Z_Point = Random.Range(-Point_Range, Point_Range);
         Vector3 Movement_Sum = transform.position - AI_Destination;
@@ -114,6 +125,7 @@ public class Aemond_Target : MonoBehaviour
         if (Physics.Raycast(AI_Destination, -Vector3.up, 2.0f, Ground))
         {
             Destination_Set = true;
+            AI_Agent.SetDestination(AI_Destination);
             //Debug.Log("Valid point");
             //Debug.Log("This is the "+Destination_Set);
         }
@@ -127,7 +139,7 @@ public class Aemond_Target : MonoBehaviour
 
 
         AI_Animator.SetBool("AI_Walking", true);
-        AI_Agent.SetDestination(AI_Destination);
+        
 
 
     }
@@ -138,7 +150,7 @@ public class Aemond_Target : MonoBehaviour
         //Debug.Log(Random_Targeting);
         AI_Animator.SetBool("AI_Running", true);
         AI_Agent.SetDestination(Current_Player.transform.position);
-        Debug.Log("Chasing");
+        //Debug.Log("Chasing");
         transform.LookAt(Current_Player);
 
     }
@@ -151,7 +163,7 @@ public class Aemond_Target : MonoBehaviour
         AI_Animator.SetBool("AI_Running", false);
         AI_Animator.SetBool("AI_Attacking", true);
         transform.LookAt(Current_Player);
-        Debug.Log("Attacking");
+        //Debug.Log("Attacking");
 
     }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Red_Alien_Health : MonoBehaviour
 {
+
+    //This script handles health tracking and death animations for the red colored alien
     public GameObject Red_Weapon;
     public GameObject Dropped_Weapon;
     public float Red_Health;
@@ -14,7 +16,7 @@ public class Red_Alien_Health : MonoBehaviour
     public Luke_Target Luke;
     public AI_Events Player;
     private bool Weapon_Drop = false;
-    // Start is called before the first frame update
+    private Rigidbody Attached_RB;
     void Start()
     {
         aemond = GetComponent<Aemond_Target>();
@@ -23,7 +25,7 @@ public class Red_Alien_Health : MonoBehaviour
         Player = GetComponent<AI_Events>();
         Luke = GetComponent<Luke_Target>();
         Red_Health = 150;
-
+        Attached_RB = GetComponent<Rigidbody>();
         Animator = GetComponent<Animator>();
         
     }
@@ -56,7 +58,7 @@ public class Red_Alien_Health : MonoBehaviour
 
         //public GameObject Go = collision.transform.parent.gameObject;
 
-        if (collision.gameObject.name == "SwordBlue")
+        if (collision.gameObject.tag == "Light_Weapon")
         {
             //Debug.Log("first trigger");
             if (collision.transform.parent is null)
@@ -66,14 +68,15 @@ public class Red_Alien_Health : MonoBehaviour
             }
 
         }
-        if (collision.contacts[0].otherCollider.transform.gameObject.name == "SwordBlue")
+        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Light_Weapon")
         {
+            Attached_RB.isKinematic = false;
             Red_Health -= 15;
 
-            Debug.Log("Damage trigger " + Red_Health);
+            //Debug.Log("Damage trigger " + Red_Health);
         }
 
-        if (collision.gameObject.name == "SwordGreen")
+        if (collision.gameObject.tag == "Medium_Weapon")
         {
             //Debug.Log("first trigger");
             if (collision.transform.parent is null)
@@ -83,14 +86,15 @@ public class Red_Alien_Health : MonoBehaviour
             }
 
         }
-        if (collision.contacts[0].otherCollider.transform.gameObject.name == "SwordGreen")
+        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Medium_Weapon")
         {
+            Attached_RB.isKinematic = false;
             Red_Health -= 20;
 
-            Debug.Log("Green trigger " + Red_Health);
+            //Debug.Log("Green trigger " + Red_Health);
         }
 
-        if (collision.gameObject.name == "SwordRed")
+        if (collision.gameObject.tag == "Heavy_Weapon")
         {
             //Debug.Log("first trigger");
             if (collision.transform.parent is null)
@@ -103,11 +107,12 @@ public class Red_Alien_Health : MonoBehaviour
 
 
         }
-        if (collision.contacts[0].otherCollider.transform.gameObject.name == "SwordRed")
+        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Heavy_Weapon")
         {
+            Attached_RB.isKinematic = false;
             Red_Health -= 25;
 
-            Debug.Log("Red trigger " + Red_Health);
+            //Debug.Log("Red trigger " + Red_Health);
         }
     }
 
@@ -122,6 +127,11 @@ public class Red_Alien_Health : MonoBehaviour
         }
         yield return new WaitForSeconds(10f);
         Destroy(gameObject);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        Attached_RB.isKinematic = true;
     }
 
 

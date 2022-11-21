@@ -17,6 +17,9 @@ TagManager:
   - Lever
   - Window
   - Wall
+  - Heavy_Weapon
+  - Medium_Weapon
+  - Light_Weapon
   layers:
   - Default
   - TransparentFX

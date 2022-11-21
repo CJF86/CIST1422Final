@@ -45,8 +45,7 @@ public class Door_Opening : MonoBehaviour
         Door_Puzzle = GameObject.Find("MiniGame").GetComponentInChildren<Win_Condition>();
 
         PlayerGUI = GameObject.Find("PlayerGUI").GetComponent<Canvas>();
-
-        DontDestroyOnLoad(this.gameObject);
+        
     }
 
     // Update is called once per frame
@@ -69,6 +68,8 @@ public class Door_Opening : MonoBehaviour
             Debug.Log("Door is open");
             Door_Open();
             Light_Flicker();
+            //PlayerPrefs.SetInt("Escaped", PlayerPrefs.GetInt("Escaped")+1);
+            //PlayerPrefs.Save();
         }
     }
 

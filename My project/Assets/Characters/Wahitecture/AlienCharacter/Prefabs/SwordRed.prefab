@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7507417464615983094}
   m_Layer: 0
   m_Name: SwordRed
-  m_TagString: Weapon
+  m_TagString: Heavy_Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,4 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0685a98b44a93a54fa8e863dc622df1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player_Hand: {fileID: 0}
+  Current_Character: {fileID: 0}
+  Hand_Position: {fileID: 0}
+  Character_Movement: {fileID: 0}
+  Parent_Weapon: {fileID: 0}
+  Pick_Up: 0

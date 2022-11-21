@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4634236183745162213}
   m_Layer: 0
   m_Name: SwordGreen
-  m_TagString: Weapon
+  m_TagString: Medium_Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,5 +113,5 @@ MonoBehaviour:
   Current_Character: {fileID: 0}
   Hand_Position: {fileID: 0}
   Character_Movement: {fileID: 0}
-  Original_Rotation: {x: 0, y: 0, z: 0, w: 0}
+  Parent_Weapon: {fileID: 0}
   Pick_Up: 0

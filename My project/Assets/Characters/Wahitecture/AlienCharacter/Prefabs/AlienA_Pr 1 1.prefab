@@ -321,8 +321,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AI_Animator: {fileID: 4888819771486659796}
-  Player_Sight_Range: 20
-  Player_Attack_Range: 3
   Current_Player: {fileID: 0}
   AI_Destination: {x: 0, y: 0, z: 0}
   Ground:
@@ -334,7 +332,7 @@ MonoBehaviour:
   Destination_Set: 0
   In_Sight_Range: 0
   In_Attack_Range: 0
-  Point_Range: 5
+  Point_Range: 10
   AI_Agent: {fileID: 0}
   door_Opening: {fileID: 0}
   AI_RigidBody: {fileID: 0}
@@ -399,8 +397,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AI_Animator: {fileID: 0}
-  Player_Sight_Range: 15
-  Player_Attack_Range: 5
   Current_Player: {fileID: 0}
   AI_Destination: {x: 0, y: 0, z: 0}
   Ground:
@@ -430,8 +426,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AI_Animator: {fileID: 0}
-  Player_Sight_Range: 15
-  Player_Attack_Range: 5
   Current_Player: {fileID: 0}
   AI_Destination: {x: 0, y: 0, z: 0}
   Ground:
@@ -461,8 +455,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AI_Animator: {fileID: 0}
-  Player_Sight_Range: 15
-  Player_Attack_Range: 5
   Current_Player: {fileID: 0}
   AI_Destination: {x: 0, y: 0, z: 0}
   Ground:
@@ -500,6 +492,7 @@ MonoBehaviour:
   Jace: {fileID: 0}
   Luke: {fileID: 0}
   Player: {fileID: 0}
+  Attached_RB: {fileID: 0}
 --- !u!1 &1238716689602110979
 GameObject:
   m_ObjectHideFlags: 0

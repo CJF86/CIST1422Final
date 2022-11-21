@@ -50,11 +50,20 @@ public class Weapon_Pickup : MonoBehaviour
     void LateUpdate()
     {
         Player_Hand = GameObject.Find("Hand");
-        
-        Weapon_Drop();
-        //Debug.Log(gameObject.name);
-        
-        
+
+        if (Input.GetKeyDown(KeyCode.X) == true && gameObject.transform.parent is not null)
+        {
+            if (Input.GetKeyDown(KeyCode.X) == true && gameObject.transform.parent.name == "Hand")
+            {
+                Weapon_Drop();
+
+            }
+
+        }
+
+
+
+
 
     }
 
@@ -84,16 +93,22 @@ public class Weapon_Pickup : MonoBehaviour
 
     public void Weapon_Drop()
     {
-        if (Input.GetKeyDown(KeyCode.X)==true && gameObject.transform.parent is not null)
+        if (Input.GetKeyDown(KeyCode.X)==true && gameObject.transform.parent.name == "Hand")
         {
-            //Debug.Log("Dropping weapon");
+            Debug.Log("Dropping weapon" + gameObject.name);
             Player_Hand.transform.DetachChildren();
             Player_Hand.transform.Rotate(-70, 0, 0);
 
             Parent_Weapon.transform.position = Current_Character.transform.position;
             Parent_Weapon.transform.rotation = Quaternion.identity;
-            //Debug.Log(Parent_Weapon.name);
+            
         }
+
+        else
+        {
+            Debug.Log("Do nothing. Not currently held");
+        }
+        
     }
 
     
