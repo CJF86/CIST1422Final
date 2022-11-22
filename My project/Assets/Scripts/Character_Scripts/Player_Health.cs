@@ -6,14 +6,14 @@ public class Player_Health : MonoBehaviour
 {
     public int Total_Health;
     public Component[] Clothes_Array;
-    
+    private bool Has_Hit = false;
     //ublic Text Current_Health;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("Has_Hit is " + Has_Hit);
         Total_Health = 100;
-        //Current_Health.text = "Health: " + Total_Health.ToString();
+        //DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -56,11 +56,12 @@ public class Player_Health : MonoBehaviour
             }
 
         }
-        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Light_Weapon")
+        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Light_Weapon" && Has_Hit == false)
         {
             Total_Health -= 15;
-            
-            Debug.Log("Damage trigger " + Total_Health);
+            Has_Hit = true;
+            Debug.Log("Has_Hit is " + Has_Hit);
+
         }
 
         if (collision.gameObject.tag == "Medium_Weapon")
@@ -73,11 +74,11 @@ public class Player_Health : MonoBehaviour
             }
 
         }
-        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Medium_Weapon")
+        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Medium_Weapon" && Has_Hit == false)
         {
             Total_Health -= 20;
-
-            Debug.Log("Green trigger " + Total_Health);
+            Has_Hit = true;
+            Debug.Log("Has_Hit is " + Has_Hit);
         }
 
         if (collision.gameObject.tag == "Heavy_Weapon")
@@ -93,11 +94,21 @@ public class Player_Health : MonoBehaviour
 
             
         }
-        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Heavy_Weapon")
+        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Heavy_Weapon" && Has_Hit == false)
         {
+            
             Total_Health -= 25;
+            Has_Hit = true;
+            Debug.Log("Has_Hit is " + Has_Hit);
+        }
+    }
 
-            //Debug.Log("Red trigger " + Total_Health);
+    private void OnCollisionExit(Collision collision)
+    {
+        if(Has_Hit == true)
+        {
+            Has_Hit = false;
+            Debug.Log("Has_Hit is " + Has_Hit);
         }
     }
 }

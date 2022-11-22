@@ -15,6 +15,7 @@ public class Blue_Alien_Health : MonoBehaviour
     public AI_Events Player;
     private bool Weapon_Drop = false;
     private Rigidbody Attached_RB;
+    private bool Has_Hit = false;
     void Start()
     {
         aemond = GetComponent<Aemond_Target>();
@@ -69,9 +70,10 @@ public class Blue_Alien_Health : MonoBehaviour
             }
 
         }
-        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Light_Weapon")
+        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Light_Weapon" && collision.contacts[0].otherCollider.transform.parent.root.tag != "Enemy" && Has_Hit == false)
         {
             Attached_RB.isKinematic = false;
+            Has_Hit = true;
             Blue_Health -= 15;
 
             //Debug.Log("Damage trigger " + Blue_Health);
@@ -87,11 +89,12 @@ public class Blue_Alien_Health : MonoBehaviour
             }
 
         }
-        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Medium_Weapon")
+        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Medium_Weapon" && collision.contacts[0].otherCollider.transform.parent.root.tag != "Enemy" && Has_Hit == false)
         {
             Attached_RB.isKinematic = false;
+            Has_Hit = true;
             Blue_Health -= 20;
-
+            
             //Debug.Log("Green trigger " + Blue_Health);
         }
 
@@ -105,14 +108,17 @@ public class Blue_Alien_Health : MonoBehaviour
             }
 
         }
-        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Heavy_Weapon")
+        if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Heavy_Weapon" && collision.contacts[0].otherCollider.transform.parent.root.tag != "Enemy" && Has_Hit == false)
         {
             Attached_RB.isKinematic = false;
+            Has_Hit = true;
             Blue_Health -= 25;
 
             //Debug.Log("Red trigger " + Blue_Health);
         }
     }
+
+    
 
     public IEnumerator Enemy_Cleanup()
     {
@@ -132,5 +138,10 @@ public class Blue_Alien_Health : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         Attached_RB.isKinematic = true;
+
+        if(Has_Hit == true)
+        {
+            Has_Hit = false;
+        }
     }
 }

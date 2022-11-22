@@ -6,9 +6,13 @@ public class Level_Trigger : MonoBehaviour
 {
     
     public Component[] Clothes_Array;
-
+    public GameObject Player_Eyes;
     private bool Player_Exit;
-    // Update is called once per frame
+
+    private void Start()
+    {
+        Player_Eyes = GameObject.Find("Camera_Pos");
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) == true)
@@ -29,11 +33,14 @@ public class Level_Trigger : MonoBehaviour
 
             collision.gameObject.GetComponent<BoxCollider>().enabled = false;
             Clothes_Array = collision.gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
-
+            
             foreach(SkinnedMeshRenderer Cloth in Clothes_Array)
             {
                 Cloth.enabled = false;
             }
+            collision.gameObject.GetComponent<NPC_Escape>().enabled = false;
+            //SceneManager.MoveGameObjectToScene(collision.gameObject, SceneManager.GetSceneByName("Prison_Stairwell"));
+           
 
             Debug.Log(collision.gameObject.name + "escaped");
         }

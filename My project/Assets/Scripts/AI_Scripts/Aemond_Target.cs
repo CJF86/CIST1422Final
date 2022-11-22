@@ -46,7 +46,7 @@ public class Aemond_Target : MonoBehaviour
         AI_RigidBody = GetComponent<Rigidbody>();
 
         Current_Player = GameObject.FindGameObjectWithTag("Aemond").transform;
-
+        
         AI_Animator = GetComponent<Animator>();
 
         AI_Agent = GetComponent<NavMeshAgent>();

@@ -7,7 +7,7 @@ public class NPC_Escape : MonoBehaviour
     public GameObject Fuse_Trigger;
     public GameObject Escape_Point;
     public Animator NPC_Animation;
-    public Door_Opening door_Opening;
+    public Alarm_Trigger door_Opening;
     public NavMeshAgent NPC_Agent;
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class NPC_Escape : MonoBehaviour
 
         Escape_Point = GameObject.Find("Escape_Point");
 
-        door_Opening = GameObject.Find("Fusebox 02").GetComponent<Door_Opening>();
+        door_Opening = GameObject.Find("AlarmTrigger").GetComponent<Alarm_Trigger>();
 
         NPC_Agent = GetComponent<NavMeshAgent>();
     }
@@ -24,7 +24,11 @@ public class NPC_Escape : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (door_Opening.Door_Movement == true)
+        if(Escape_Point is null)
+        {
+            Escape_Point = GameObject.Find("Escape_Point");
+        }
+        if (door_Opening.Alarm == true)
         {
             Debug.Log("Escaping");
             NPC_Animation.SetBool("NPC_Trapped", false);
@@ -32,7 +36,7 @@ public class NPC_Escape : MonoBehaviour
             NPC_Agent.SetDestination(Escape_Point.transform.position);
         }
 
-        if(door_Opening.Door_Movement == false)
+        if(door_Opening.Alarm == false)
         {
             Debug.Log("Trapped");
             NPC_Animation.SetBool("NPC_Trapped", true);

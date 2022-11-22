@@ -128,6 +128,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4608715164722356451, guid: d7ba64a56720e574aa7b71e2b7f1baa2, type: 3}
   m_PrefabInstance: {fileID: 1607783489}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &17086933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 17086935}
+  - component: {fileID: 17086934}
+  m_Layer: 0
+  m_Name: Prisoner_Tracking
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &17086934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17086933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 512eac3ae7eb6d24a956e651955236f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prisoner_Array:
+  - {fileID: 1516388878}
+  - {fileID: 1853648008}
+  - {fileID: 2077529526}
+  NPC_Health: {fileID: 0}
+--- !u!4 &17086935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17086933}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 287.26, y: 9.21, z: 3203.29}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 74
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &48455448
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,14 +2529,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355514105}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: 0.69803953, z: -0, w: 0.7160593}
   m_LocalPosition: {x: 286.594, y: 1.71, z: 3204.853}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 43
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 88.54, z: 0}
 --- !u!1 &358334156
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,9 +2976,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7198289372332923379, guid: 479850e43a25ca34c812fbf4e07fecd8, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7198289372332923379, guid: 479850e43a25ca34c812fbf4e07fecd8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 479850e43a25ca34c812fbf4e07fecd8, type: 3}
 --- !u!4 &413404278 stripped
 Transform:
@@ -3317,6 +3367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Clothes_Array: []
+  Player_Eyes: {fileID: 0}
 --- !u!1001 &483402198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6653,9 +6704,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7198289372332923379, guid: 479850e43a25ca34c812fbf4e07fecd8, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7198289372332923379, guid: 479850e43a25ca34c812fbf4e07fecd8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 479850e43a25ca34c812fbf4e07fecd8, type: 3}
 --- !u!1 &895947045
 GameObject:
@@ -20994,6 +21046,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 46
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1516388878 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3939276336973524310, guid: 479850e43a25ca34c812fbf4e07fecd8, type: 3}
+  m_PrefabInstance: {fileID: 1875670361}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1516388886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516388878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33724ccb5427f774993afecd3e62c13b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Total_Health: 0
+  Clothes_Array: []
 --- !u!1001 &1525288878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21346,7 +21417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3354483237132263378, guid: ad6aae32dd3eb844fa75e2a156bbe34f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3192.13
+      value: 3192.02
       objectReference: {fileID: 0}
     - target: {fileID: 3354483237132263378, guid: ad6aae32dd3eb844fa75e2a156bbe34f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22594,7 +22665,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727387779}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e5d02b6a0ec8da41846649d9aba14ea, type: 3}
   m_Name: 
@@ -23398,6 +23469,25 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 48ae30acd4207024ea88580b03b1662b, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &1853648008 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3939276336973524310, guid: 479850e43a25ca34c812fbf4e07fecd8, type: 3}
+  m_PrefabInstance: {fileID: 404020912}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1853648016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853648008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33724ccb5427f774993afecd3e62c13b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Total_Health: 0
+  Clothes_Array: []
 --- !u!1001 &1867779056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24136,9 +24226,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7198289372332923379, guid: 479850e43a25ca34c812fbf4e07fecd8, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7198289372332923379, guid: 479850e43a25ca34c812fbf4e07fecd8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 479850e43a25ca34c812fbf4e07fecd8, type: 3}
 --- !u!1001 &1880950660
 PrefabInstance:
@@ -25355,6 +25446,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2077529526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3939276336973524310, guid: 479850e43a25ca34c812fbf4e07fecd8, type: 3}
+  m_PrefabInstance: {fileID: 867490524}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2077529534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077529526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33724ccb5427f774993afecd3e62c13b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Total_Health: 0
+  Clothes_Array: []
 --- !u!1001 &2084143309
 PrefabInstance:
   m_ObjectHideFlags: 0
