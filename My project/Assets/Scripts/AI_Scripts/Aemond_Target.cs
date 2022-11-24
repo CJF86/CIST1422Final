@@ -12,6 +12,8 @@ public class Aemond_Target : MonoBehaviour
 
     public Transform Current_Player;
 
+    public GameObject[] Aemond_Array;
+
     public Vector3 AI_Destination;
 
     public RaycastHit Hit;
@@ -45,15 +47,31 @@ public class Aemond_Target : MonoBehaviour
 
         AI_RigidBody = GetComponent<Rigidbody>();
 
-        Current_Player = GameObject.FindGameObjectWithTag("Aemond").transform;
-        
+        Aemond_Array = GameObject.FindGameObjectsWithTag("Aemond");
+
+        foreach(GameObject go in Aemond_Array)
+        {
+            if (go.GetComponent<BoxCollider>().enabled == true)
+            {
+                Current_Player = go.transform;
+                break;
+            }
+            
+        }
+
+        if (Current_Player == null)
+        {
+            Debug.Log("Is null");
+            gameObject.GetComponent<Aemond_Target>().enabled = false;
+        }
+
         AI_Animator = GetComponent<Animator>();
 
         AI_Agent = GetComponent<NavMeshAgent>();
 
         door_Opening = GameObject.Find("AlarmTrigger").GetComponent<Alarm_Trigger>();
 
-        Escape_Trigger = PlayerPrefs.GetString("Escaped");
+        
 
         
 
@@ -62,7 +80,12 @@ public class Aemond_Target : MonoBehaviour
     
     void Update()
     {
-        Debug.Log("String value" + Escape_Trigger);
+        if (Current_Player == null)
+        {
+            Debug.Log("Is null");
+            gameObject.GetComponent<Aemond_Target>().enabled = false;
+            return;
+        }
 
         In_Sight_Range = Physics.CheckSphere(transform.position,Player_Sight_Range,Aemond);
 
@@ -75,7 +98,7 @@ public class Aemond_Target : MonoBehaviour
         }
         if (door_Opening.Alarm == true && Current_Player.gameObject.GetComponent<BoxCollider>().enabled == true)
         {
-            Current_Player = GameObject.FindGameObjectWithTag("Aemond").transform;
+            //Current_Player = GameObject.FindGameObjectWithTag("Aemond").transform;
 
             
 

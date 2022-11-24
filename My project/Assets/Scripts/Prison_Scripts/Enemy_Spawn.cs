@@ -50,17 +50,18 @@ public class Enemy_Spawn : MonoBehaviour
         float RandomX = Random.Range(-20, 20);
         float RandomZ = Random.Range(-20, 20);
 
-        Spawn_Position = new Vector3(transform.position.x + RandomX, 0, transform.position.z + RandomZ);
+        Spawn_Position = new Vector3(transform.position.x + RandomX, transform.position.y, transform.position.z + RandomZ);
 
-        if(Physics.Raycast(Spawn_Position,-Vector3.up,out Hit, 2.0f)&& Hit.transform.tag=="Enemy_Spawn")
+        if(Physics.Raycast(Spawn_Position,-Vector3.up,out Hit, 20.0f)&& Hit.transform.tag=="Enemy_Spawn")
         {
             Debug.Log("Point is set " + Set_Point);
-
+            
             Set_Point = true;
             return Set_Point;
         }
         else
         {
+            Debug.DrawRay(Spawn_Position, -Vector3.up);
             Set_Point = false;
             return Set_Point;
         }

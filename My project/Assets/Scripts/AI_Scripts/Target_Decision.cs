@@ -23,7 +23,7 @@ public class Target_Decision : MonoBehaviour
         Random.InitState(System.DateTime.Now.Millisecond);
 
         Target_Choice = Random.Range(0,4);
-        Debug.Log("This is the choice " + Target_Choice);
+        
         jace_Targeting = gameObject.GetComponent<Jace_Target>();
         luke_Targeting = gameObject.GetComponent<Luke_Target>();
         aemond_Targeting = gameObject.GetComponent<Aemond_Target>();
@@ -61,7 +61,7 @@ public class Target_Decision : MonoBehaviour
     {
         if (jace_Targeting.enabled == false && aemond_Targeting.enabled == false && Player_Targeting.enabled == false && luke_Targeting.enabled == false)
         {
-            Debug.Log("Retargeting Currently");
+            
             Targeting();
         }
         
@@ -74,7 +74,7 @@ public class Target_Decision : MonoBehaviour
         //Random.InitState(Time.frameCount);
 
         Target_Choice = Random.Range(0,4);
-        Debug.Log("Retargeting to " + Target_Choice);
+        
         jace_Targeting = gameObject.GetComponent<Jace_Target>();
         luke_Targeting = gameObject.GetComponent<Luke_Target>();
         aemond_Targeting = gameObject.GetComponent<Aemond_Target>();

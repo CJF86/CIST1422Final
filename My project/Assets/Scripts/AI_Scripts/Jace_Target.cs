@@ -12,6 +12,8 @@ public class Jace_Target : MonoBehaviour
 
     public Transform Current_Player;
 
+    public GameObject[] Jace_Array;
+
     public Vector3 AI_Destination;
 
     public RaycastHit Hit;
@@ -45,23 +47,43 @@ public class Jace_Target : MonoBehaviour
 
         AI_RigidBody = GetComponent<Rigidbody>();
 
-        Current_Player = GameObject.FindGameObjectWithTag("Jace").transform;
+        Jace_Array = GameObject.FindGameObjectsWithTag("Jace");
 
-        Debug.Log(Current_Player.name);
+        foreach (GameObject go in Jace_Array)
+        {
+            if (go.GetComponent<BoxCollider>().enabled == true)
+            {
+                Current_Player = go.transform;
+                break;
+            }
+            
+        }
+
+        if(Current_Player == null)
+        {
+            gameObject.GetComponent<Jace_Target>().enabled = false;
+        }
+
+       
         AI_Animator = GetComponent<Animator>();
 
         AI_Agent = GetComponent<NavMeshAgent>();
 
         door_Opening = GameObject.Find("AlarmTrigger").GetComponent<Alarm_Trigger>();
 
-        Escape_Trigger = PlayerPrefs.GetString("Escaped");
+        
 
     }
 
 
     void Update()
     {
-        Debug.Log("String value" + Escape_Trigger);
+        if (Current_Player == null)
+        {
+            Debug.Log("Is null");
+            gameObject.GetComponent<Jace_Target>().enabled = false;
+            return;
+        }
 
         In_Sight_Range = Physics.CheckSphere(transform.position, Player_Sight_Range, Jace);
 
@@ -73,6 +95,8 @@ public class Jace_Target : MonoBehaviour
             //Debug.Log("Jace Script Disabled");
         }
 
+        
+
         In_Attack_Range = Physics.CheckSphere(transform.position, Player_Attack_Range, Jace);
         //Debug.Log("Can attack" + In_Attack_Range);
         In_Sight_Range = Physics.CheckSphere(transform.position, Player_Sight_Range, Jace);
@@ -80,7 +104,7 @@ public class Jace_Target : MonoBehaviour
 
         if (door_Opening.Alarm == true && Current_Player.gameObject.GetComponent<BoxCollider>().enabled == true)
         {
-            Current_Player = GameObject.FindGameObjectWithTag("Jace").transform;
+            //Current_Player = GameObject.FindGameObjectWithTag("Jace").transform;
 
             
 

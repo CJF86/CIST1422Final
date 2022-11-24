@@ -10,6 +10,8 @@ public class Luke_Target : MonoBehaviour
 
     private float Player_Attack_Range = 3f;
 
+    public GameObject[] Luke_Array;
+
     public Transform Current_Player;
 
     public Vector3 AI_Destination;
@@ -41,11 +43,25 @@ public class Luke_Target : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Luke Script Enabled");
+        
 
         AI_RigidBody = GetComponent<Rigidbody>();
 
-        Current_Player = GameObject.FindGameObjectWithTag("Luke").transform;
+        Luke_Array = GameObject.FindGameObjectsWithTag("Luke");
+
+        foreach (GameObject go in Luke_Array)
+        {
+            if (go.GetComponent<BoxCollider>().enabled == true)
+            {
+                Current_Player = go.transform;
+                break;
+            }
+            
+        }
+        if (Current_Player == null)
+        {
+            gameObject.GetComponent<Luke_Target>().enabled = false;
+        }
 
         AI_Animator = GetComponent<Animator>();
 
@@ -53,13 +69,18 @@ public class Luke_Target : MonoBehaviour
 
         door_Opening = GameObject.Find("AlarmTrigger").GetComponent<Alarm_Trigger>();
 
-        Escape_Trigger = PlayerPrefs.GetString("Escaped");
+        
     }
 
 
     void Update()
     {
-        Debug.Log("String value" + Escape_Trigger);
+        if (Current_Player == null)
+        {
+            Debug.Log("Is null");
+            gameObject.GetComponent<Luke_Target>().enabled = false;
+            return;
+        }
 
         In_Sight_Range = Physics.CheckSphere(transform.position, Player_Sight_Range, Luke);
 
@@ -72,7 +93,7 @@ public class Luke_Target : MonoBehaviour
         }
         if (door_Opening.Alarm==true && Current_Player.gameObject.GetComponent<BoxCollider>().enabled == true)
         {
-            Current_Player = GameObject.FindGameObjectWithTag("Luke").transform;
+            //Current_Player = GameObject.FindGameObjectWithTag("Luke").transform;
 
             
 
