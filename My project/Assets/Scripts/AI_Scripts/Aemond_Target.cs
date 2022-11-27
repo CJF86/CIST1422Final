@@ -39,11 +39,16 @@ public class Aemond_Target : MonoBehaviour
 
     public bool Targeting;
 
+    float distance = Mathf.Infinity;
+
     private string Escape_Trigger;
+
     
     void Start()
     {
-        Debug.Log("Aemond Script Enabled");
+        
+
+        
 
         AI_RigidBody = GetComponent<Rigidbody>();
 
@@ -53,11 +58,14 @@ public class Aemond_Target : MonoBehaviour
         {
             if (go.GetComponent<BoxCollider>().enabled == true)
             {
+                
                 Current_Player = go.transform;
                 break;
             }
             
         }
+
+        
 
         if (Current_Player == null)
         {
@@ -139,7 +147,7 @@ public class Aemond_Target : MonoBehaviour
         float X_Point = Random.Range(-Point_Range, Point_Range);
         float Z_Point = Random.Range(-Point_Range, Point_Range);
         Vector3 Movement_Sum = transform.position - AI_Destination;
-
+        Debug.Log("The movement sum is" + Movement_Sum);
         if (Destination_Set == false)
         {
             AI_Destination = new Vector3(transform.position.x + X_Point, transform.position.y, transform.position.z + Z_Point);

@@ -9,7 +9,8 @@ public class NPC_Escape : MonoBehaviour
     public Animator NPC_Animation;
     public Alarm_Trigger door_Opening;
     public NavMeshAgent NPC_Agent;
-    // Start is called before the first frame update
+    public RaycastHit Hit;
+    public Component[] Clothes_Array;
     void Start()
     {
         NPC_Animation = GetComponent<Animator>();
@@ -43,6 +44,8 @@ public class NPC_Escape : MonoBehaviour
             NPC_Animation.SetBool("NPC_Escaped", false);
             transform.LookAt(Escape_Point.transform);
         }
+
+        
 
         
         

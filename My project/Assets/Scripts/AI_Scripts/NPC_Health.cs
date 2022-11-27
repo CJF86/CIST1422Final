@@ -8,10 +8,12 @@ public class NPC_Health : MonoBehaviour
     public int Total_Health;
     public Component[] Clothes_Array;
     private bool Has_Hit = false;
-    //ublic Text Current_Health;
+    private Animator NPC_Animator;
+    private bool Has_Died;
     // Start is called before the first frame update
     void Start()
     {
+        NPC_Animator = GetComponent<Animator>();
         Debug.Log("Has_Hit is " + Has_Hit);
         Total_Health = 100;
         DontDestroyOnLoad(gameObject);
@@ -28,11 +30,16 @@ public class NPC_Health : MonoBehaviour
 
             Clothes_Array = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
 
-            foreach (SkinnedMeshRenderer Cloth in Clothes_Array)
-            {
-                Cloth.enabled = false;
-            }
+            StartCoroutine(Enemy_Cleanup());
 
+            if(Has_Died == true)
+            {
+                foreach (SkinnedMeshRenderer Cloth in Clothes_Array)
+                {
+                    Cloth.enabled = false;
+                }
+            }
+            
             gameObject.GetComponent<NPC_Escape>().enabled = false;
         }
 
@@ -109,5 +116,15 @@ public class NPC_Health : MonoBehaviour
             Has_Hit = false;
             Debug.Log("Has_Hit is " + Has_Hit);
         }
+    }
+
+    public IEnumerator Enemy_Cleanup()
+    {
+        NPC_Animator.SetBool("NPC_Escaped", false);
+        NPC_Animator.SetBool("NPC_Trapped", false);
+        NPC_Animator.SetBool("NPC_Dead", true);
+        yield return new WaitForSeconds(10f);
+        Has_Died = true;
+        
     }
 }

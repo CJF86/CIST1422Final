@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 public class Level_Trigger : MonoBehaviour
 {
     
@@ -28,10 +29,12 @@ public class Level_Trigger : MonoBehaviour
 
     public void OnCollisionStay(Collision collision)
     {
+        
         if(collision.gameObject.tag == "Aemond" || collision.gameObject.tag == "Jace" || collision.gameObject.tag == "Luke")
         {
 
             collision.gameObject.GetComponent<BoxCollider>().enabled = false;
+            collision.gameObject.GetComponent<NavMeshAgent>().enabled = false;
             Clothes_Array = collision.gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
             
             foreach(SkinnedMeshRenderer Cloth in Clothes_Array)
@@ -44,6 +47,7 @@ public class Level_Trigger : MonoBehaviour
 
             Debug.Log(collision.gameObject.name + "escaped");
         }
+        
 
         if(collision.gameObject.tag == "Player" && Player_Exit == true)
         {

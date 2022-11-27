@@ -20,6 +20,7 @@ TagManager:
   - Heavy_Weapon
   - Medium_Weapon
   - Light_Weapon
+  - Escape_Point
   layers:
   - Default
   - TransparentFX
