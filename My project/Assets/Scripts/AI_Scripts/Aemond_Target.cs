@@ -188,13 +188,10 @@ public class Aemond_Target : MonoBehaviour
 
     public void Attack_State()
     {
-
-        //Random_Targeting = Random.Range(0, Current_Player.Length);
-        //Debug.Log("Attack state "+Random_Targeting);
         AI_Animator.SetBool("AI_Running", false);
         AI_Animator.SetBool("AI_Attacking", true);
         transform.LookAt(Current_Player);
-        //Debug.Log("Attacking");
+        Debug.Log("Attacking");
 
     }
 

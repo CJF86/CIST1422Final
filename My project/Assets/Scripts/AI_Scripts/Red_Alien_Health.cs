@@ -65,7 +65,7 @@ public class Red_Alien_Health : MonoBehaviour
             if (collision.transform.parent is null)
             {
                 Red_Health += 15;
-                //Debug.Log("not held");
+                return;
             }
 
         }
@@ -84,6 +84,7 @@ public class Red_Alien_Health : MonoBehaviour
             {
                 //Debug.Log("not held");
                 Red_Health += 20;
+                return;
             }
 
         }
@@ -102,10 +103,8 @@ public class Red_Alien_Health : MonoBehaviour
             {
                 //Debug.Log("not held");
                 Red_Health += 25;
+                return;
             }
-
-
-
 
         }
         if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Heavy_Weapon" && collision.contacts[0].otherCollider.transform.parent.root.tag != "Enemy" && Has_Hit == false)
@@ -115,6 +114,7 @@ public class Red_Alien_Health : MonoBehaviour
             Has_Hit = true;
             //Debug.Log("Red trigger " + Red_Health);
         }
+        
     }
 
     public IEnumerator Enemy_Cleanup()

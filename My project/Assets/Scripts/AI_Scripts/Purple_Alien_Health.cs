@@ -69,7 +69,7 @@ public class Purple_Alien_Health : MonoBehaviour
             if (collision.transform.parent is null)
             {
                 Purple_Health += 15;
-                //Debug.Log("not held");
+                return;
             }
 
         }
@@ -88,6 +88,7 @@ public class Purple_Alien_Health : MonoBehaviour
             {
 
                 Purple_Health += 20;
+                return;
             }
 
         }
@@ -106,6 +107,7 @@ public class Purple_Alien_Health : MonoBehaviour
             {
                 //Debug.Log("not held");
                 Purple_Health += 25;
+                return;
             }
 
         }

@@ -4,22 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Player_Health : MonoBehaviour
 {
-    public int Total_Health;
+
+    [Range(0, 100)] public int Total_Health;
     public Component[] Clothes_Array;
     private bool Has_Hit = false;
-    //ublic Text Current_Health;
-    // Start is called before the first frame update
+    private float Regen_Health_Range = 15f;
+    [SerializeField]
+    private bool In_Regen_Range;
+    private LayerMask Enemy;
     void Start()
     {
         Debug.Log("Has_Hit is " + Has_Hit);
         Total_Health = 100;
-        //DontDestroyOnLoad(gameObject);
+        StartCoroutine(Regen_Timer());
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        //Current_Health.text = "Health: " + Total_Health.ToString();
+        
+        In_Regen_Range = Physics.CheckSphere(transform.position, Regen_Health_Range, Enemy);
 
         if (Total_Health <= 0)
         {
@@ -32,27 +36,21 @@ public class Player_Health : MonoBehaviour
                 Cloth.enabled = false;
             }
         }
-
-        //Debug.Log(Total_Health);
-
         
     }
 
     public void OnCollisionEnter(Collision collision)
     {
         
-        //Debug.Log("Event being triggered");
-        //Debug.Log(collision.gameObject.name);
-        
-        //public GameObject Go = collision.transform.parent.gameObject;
+       
 
         if (collision.gameObject.tag == "Light_Weapon")
         {
-            //Debug.Log("first trigger");
+            
             if (collision.transform.parent is null)
             {
                 Total_Health += 15;
-                //Debug.Log("not held");
+                
             }
 
         }
@@ -60,16 +58,16 @@ public class Player_Health : MonoBehaviour
         {
             Total_Health -= 15;
             Has_Hit = true;
-            Debug.Log("Has_Hit is " + Has_Hit);
+            
 
         }
 
         if (collision.gameObject.tag == "Medium_Weapon")
         {
-            //Debug.Log("first trigger");
+            
             if (collision.transform.parent is null)
             {
-                //Debug.Log("not held");
+                
                 Total_Health += 20;
             }
 
@@ -78,15 +76,15 @@ public class Player_Health : MonoBehaviour
         {
             Total_Health -= 20;
             Has_Hit = true;
-            Debug.Log("Has_Hit is " + Has_Hit);
+            
         }
 
         if (collision.gameObject.tag == "Heavy_Weapon")
         {
-            //Debug.Log("first trigger");
+            
             if (collision.transform.parent is null)
             {
-                //Debug.Log("not held");
+                
                 Total_Health += 25;
             }
 
@@ -99,7 +97,7 @@ public class Player_Health : MonoBehaviour
             
             Total_Health -= 25;
             Has_Hit = true;
-            Debug.Log("Has_Hit is " + Has_Hit);
+            
         }
     }
 
@@ -108,7 +106,25 @@ public class Player_Health : MonoBehaviour
         if(Has_Hit == true)
         {
             Has_Hit = false;
-            Debug.Log("Has_Hit is " + Has_Hit);
+            
         }
+    }
+
+    public IEnumerator Regen_Timer()
+    {
+        while (true)
+        {
+            if (!In_Regen_Range && Total_Health < 100)
+            {
+                Debug.Log("In While loop");
+                Total_Health += 1;
+                yield return new WaitForSeconds(1f);
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+        
     }
 }

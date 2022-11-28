@@ -3,16 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using TMPro;
 public class Level_Trigger : MonoBehaviour
 {
     
     public Component[] Clothes_Array;
     public GameObject Player_Eyes;
     private bool Player_Exit;
-
+    private GameObject Jace;
+    private GameObject Luke;
+    private GameObject Aemond;
+    private GameObject Escape_Text;
+    public TMP_Text Text;
     private void Start()
     {
+        Escape_Text = GameObject.Find("EscapeText");
+        Jace = GameObject.Find("Jace");
+        Luke = GameObject.Find("Luke");
+        Aemond = GameObject.Find("Aemond");
         Player_Eyes = GameObject.Find("Camera_Pos");
+        //Text = Escape_Text.GetComponent<TMP_Text>();
     }
     void Update()
     {
@@ -47,11 +57,25 @@ public class Level_Trigger : MonoBehaviour
 
             Debug.Log(collision.gameObject.name + "escaped");
         }
+
+        if(collision.gameObject.tag == "Player")
+        {
+            
+            Text.enabled = true;
+        }
         
 
         if(collision.gameObject.tag == "Player" && Player_Exit == true)
         {
+            Jace.GetComponent<NPC_Escape>().enabled = false;
+            Luke.GetComponent<NPC_Escape>().enabled = false;
+            Aemond.GetComponent<NPC_Escape>().enabled = false;
             SceneManager.LoadScene("Prison_Stairwell");
         }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        Text.enabled = false;
     }
 }

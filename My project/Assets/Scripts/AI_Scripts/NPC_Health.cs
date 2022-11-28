@@ -69,7 +69,7 @@ public class NPC_Health : MonoBehaviour
         {
             Total_Health -= 15;
             Has_Hit = true;
-            Debug.Log("Has_Hit is " + Has_Hit);
+            
 
         }
 
@@ -87,7 +87,7 @@ public class NPC_Health : MonoBehaviour
         {
             Total_Health -= 20;
             Has_Hit = true;
-            Debug.Log("Has_Hit is " + Has_Hit);
+            
         }
 
         if (collision.gameObject.tag == "Heavy_Weapon")
@@ -105,7 +105,7 @@ public class NPC_Health : MonoBehaviour
 
             Total_Health -= 25;
             Has_Hit = true;
-            Debug.Log("Has_Hit is " + Has_Hit);
+            
         }
     }
 
@@ -114,7 +114,7 @@ public class NPC_Health : MonoBehaviour
         if (Has_Hit == true)
         {
             Has_Hit = false;
-            Debug.Log("Has_Hit is " + Has_Hit);
+            
         }
     }
 

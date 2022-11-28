@@ -66,7 +66,7 @@ public class Blue_Alien_Health : MonoBehaviour
             if (collision.transform.parent is null)
             {
                 Blue_Health += 15;
-                //Debug.Log("not held");
+                return;
             }
 
         }
@@ -86,6 +86,7 @@ public class Blue_Alien_Health : MonoBehaviour
             {
                 
                 Blue_Health += 20;
+                return;
             }
 
         }
@@ -103,8 +104,8 @@ public class Blue_Alien_Health : MonoBehaviour
             //Debug.Log("first trigger");
             if (collision.transform.parent is null)
             {
-                //Debug.Log("not held");
                 Blue_Health += 25;
+                return;
             }
 
         }
