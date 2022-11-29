@@ -90817,7 +90817,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.73333335
-    functionName: 
+    functionName: Enemy_Cleanup()
     data: 
     objectReferenceParameter: {fileID: 1000014232435074, guid: 0a36d45e1b007e14b884de828f3b6938, type: 3}
     floatParameter: 0

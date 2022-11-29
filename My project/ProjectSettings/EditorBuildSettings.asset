@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prison_Stairwell.unity
     guid: 0149af8e0f37f674b9f1dfa8dd8cd162
+  - enabled: 1
+    path: Assets/Scenes/Prison_Engines.unity
+    guid: b6262a1526a504c41b22f763fada181a
   m_configObjects: {}
