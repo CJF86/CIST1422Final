@@ -39,7 +39,7 @@ public class Aemond_Target : MonoBehaviour
 
     public bool Targeting;
 
-    float distance = Mathf.Infinity;
+    //float distance = Mathf.Infinity;
 
     private string Escape_Trigger;
 

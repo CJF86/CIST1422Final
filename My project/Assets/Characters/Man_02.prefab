@@ -520,6 +520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Total_Health: 0
   Clothes_Array: []
+  In_Regen_Range: 0
 --- !u!82 &8775953276623344390
 AudioSource:
   m_ObjectHideFlags: 0

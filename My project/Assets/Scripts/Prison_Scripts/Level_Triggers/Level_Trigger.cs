@@ -30,7 +30,7 @@ public class Level_Trigger : MonoBehaviour
         {
             Player_Exit = true;
         }
-        if (Input.GetKeyDown(KeyCode.E) == false)
+        if (Input.GetKeyUp(KeyCode.E) == true)
         {
             Player_Exit = false;
         }
@@ -70,6 +70,7 @@ public class Level_Trigger : MonoBehaviour
             Jace.GetComponent<NPC_Escape>().enabled = false;
             Luke.GetComponent<NPC_Escape>().enabled = false;
             Aemond.GetComponent<NPC_Escape>().enabled = false;
+
             SceneManager.LoadScene("Prison_Stairwell");
         }
     }

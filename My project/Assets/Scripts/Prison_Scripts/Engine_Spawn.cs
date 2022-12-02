@@ -9,7 +9,7 @@ public class Engine_Spawn : MonoBehaviour
     public List<GameObject> Prisoner_Array;
     public Component[] Clothes_Array;
     public NPC_Health NPC_Health;
-    void Start()
+    void Awake()
     {
         DontDestroyOnLoad(gameObject);
         Prisoner_Count = GameObject.Find("PrisonerSpawn").GetComponent<Prisoner_Spawn>();

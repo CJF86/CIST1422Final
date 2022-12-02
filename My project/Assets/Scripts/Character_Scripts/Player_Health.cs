@@ -49,14 +49,14 @@ public class Player_Health : MonoBehaviour
             
             if (collision.transform.parent is null)
             {
-                Total_Health += 15;
+                Total_Health += 5;
                 
             }
 
         }
         if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Light_Weapon" && Has_Hit == false)
         {
-            Total_Health -= 15;
+            Total_Health -= 5;
             Has_Hit = true;
             
 
@@ -68,13 +68,13 @@ public class Player_Health : MonoBehaviour
             if (collision.transform.parent is null)
             {
                 
-                Total_Health += 20;
+                Total_Health += 10;
             }
 
         }
         if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Medium_Weapon" && Has_Hit == false)
         {
-            Total_Health -= 20;
+            Total_Health -= 10;
             Has_Hit = true;
             
         }
@@ -85,7 +85,7 @@ public class Player_Health : MonoBehaviour
             if (collision.transform.parent is null)
             {
                 
-                Total_Health += 25;
+                Total_Health += 15;
             }
 
           
@@ -95,7 +95,7 @@ public class Player_Health : MonoBehaviour
         if (collision.contacts[0].otherCollider.transform.gameObject.tag == "Heavy_Weapon" && Has_Hit == false)
         {
             
-            Total_Health -= 25;
+            Total_Health -= 15;
             Has_Hit = true;
             
         }

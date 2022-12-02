@@ -21,11 +21,11 @@ public class Character_Movement : MonoBehaviour
 
     public bool He_Zoom = false;
 
-    public float Character_Walk_Speed = 1f;
+    private float Character_Walk_Speed = 1f;
 
-    public float Character_Turn_Speed = 15f;
+    private float Character_Turn_Speed = 20f;
 
-    public float Character_Run_Speed = 5f;
+    private float Character_Run_Speed = 5f;
 
     public Vector3 X_Movement_Update;
 
@@ -179,9 +179,9 @@ public class Character_Movement : MonoBehaviour
 
         Vector3 Turn_Vector = new Vector3();
 
-        Turn_Vector.y += -Mouse_Value * Character_Turn_Speed * Time.fixedDeltaTime;
+        Turn_Vector.y += Mouse_Value * Character_Turn_Speed * Time.fixedDeltaTime;
 
-        //Turn_Vector.y = Mathf.Clamp(Turn_Vector.y, 110f, 136f);
+        //Changing Mouse_Value from negative to positive
 
         //Debug.Log("This is" + Turn_Vector.y);
 
@@ -233,6 +233,21 @@ public class Character_Movement : MonoBehaviour
         
     }
 
+    public void Character_Block()
+    {
+        bool Block_Trigger = Input.GetMouseButton((int)KeyCode.Mouse1);
+        if (Block_Trigger == true)
+        {
+            Player_Movement.SetBool("Is_Blocking", true);
+            Debug.Log("Is blocking");
+        }
+        else
+        {
+            Player_Movement.SetBool("Is_Blocking", false);
+            
+        }
+    }
+
     public bool Is_Holding()
     {
         GameObject Weapon = GameObject.Find("Hand");
@@ -264,6 +279,11 @@ public class Character_Movement : MonoBehaviour
                 Player_Audio.PlayOneShot(Bird_Drone);
             }
         }
+    }
+
+    public void Animation_Test()
+    {
+        Debug.Log("Animation event trigger");
     }
 
 

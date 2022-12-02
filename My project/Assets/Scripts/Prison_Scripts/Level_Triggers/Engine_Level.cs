@@ -9,17 +9,54 @@ public class Engine_Level : MonoBehaviour
     public Component[] Clothes_Array;
     public GameObject Player_Eyes;
     private bool Player_Exit;
+    [SerializeField]
     private GameObject Jace;
+    [SerializeField]
     private GameObject Luke;
+    [SerializeField]
     private GameObject Aemond;
     private GameObject Escape_Text;
     public TMP_Text Text;
+    public Engine_Flicker engine_Flicker;
+    [SerializeField]
+    private GameObject[] Luke_Array;
+    [SerializeField]
+    private GameObject[] Jace_Array;
+    [SerializeField]
+    private GameObject[] Aemond_Array;
     private void Start()
     {
+        
         Escape_Text = GameObject.Find("EscapeText");
-        Jace = GameObject.Find("Jace");
-        Luke = GameObject.Find("Luke");
-        Aemond = GameObject.Find("Aemond");
+        Jace_Array = GameObject.FindGameObjectsWithTag("Jace");
+        Luke_Array = GameObject.FindGameObjectsWithTag("Luke");
+        Aemond_Array = GameObject.FindGameObjectsWithTag("Aemond");
+        foreach(GameObject go in Jace_Array)
+        {
+            if (go.GetComponent<NPC_Escape>().enabled)
+            {
+                Jace = go;
+                break;
+            }
+        }
+
+        foreach (GameObject go in Luke_Array)
+        {
+            if (go.GetComponent<NPC_Escape>().enabled)
+            {
+                Luke = go;
+                break;
+            }
+        }
+
+        foreach (GameObject go in Aemond_Array)
+        {
+            if (go.GetComponent<NPC_Escape>().enabled)
+            {
+                Aemond = go;
+                break;
+            }
+        }
         Player_Eyes = GameObject.Find("Camera_Pos");
         //Text = Escape_Text.GetComponent<TMP_Text>();
     }
@@ -29,7 +66,7 @@ public class Engine_Level : MonoBehaviour
         {
             Player_Exit = true;
         }
-        if (Input.GetKeyDown(KeyCode.E) == false)
+        if (Input.GetKeyUp(KeyCode.E) == true)
         {
             Player_Exit = false;
         }

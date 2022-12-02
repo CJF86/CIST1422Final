@@ -21,6 +21,7 @@ TagManager:
   - Medium_Weapon
   - Light_Weapon
   - Escape_Point
+  - Generator
   layers:
   - Default
   - TransparentFX

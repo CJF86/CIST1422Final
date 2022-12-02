@@ -5,7 +5,7 @@ using UnityEngine;
 public class Container_Link : MonoBehaviour
 {
     public Transform Player_Eyes;
-    public float Character_Turn_Speed = 10f;
+    private float Character_Turn_Speed = 20f;
     public float Y_Input;
     public float Mouse_Value;
     public GameObject Player_Character;
@@ -55,8 +55,9 @@ public class Container_Link : MonoBehaviour
 
         Vector3 Turn_Vector = new Vector3();
 
-        Turn_Vector.x += -Mouse_Value * Character_Turn_Speed * Time.fixedDeltaTime;
+        Turn_Vector.x += Mouse_Value * Character_Turn_Speed * Time.fixedDeltaTime;
 
+        //Changing Mouse_Value from negative to positive
         //if statement not triggering for some reason
         /*
         if(Turn_Vector.x >= 38)
