@@ -12,17 +12,29 @@ public class Player_Health : MonoBehaviour
     [SerializeField]
     private bool In_Regen_Range;
     private LayerMask Enemy;
+    public Bird_Collection Bird_Evidence;
+    private bool Evidence_Trigger;
     void Start()
     {
         Debug.Log("Has_Hit is " + Has_Hit);
         Total_Health = 100;
         StartCoroutine(Regen_Timer());
+        Bird_Evidence = GameObject.Find("Collected_Evidence").GetComponent<Bird_Collection>();
     }
 
     
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E) == true)
+        {
+            Evidence_Trigger = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.E) == true)
+        {
+            Evidence_Trigger = false;
+        }
+
         In_Regen_Range = Physics.CheckSphere(transform.position, Regen_Health_Range, Enemy);
 
         if (Total_Health <= 0)
@@ -126,5 +138,14 @@ public class Player_Health : MonoBehaviour
             }
         }
         
+    }
+
+    public void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Bird_Evidence") && Evidence_Trigger == true)
+        {
+            Bird_Evidence.Evidence_Collected++;
+            Destroy(collision.gameObject);
+        }
     }
 }

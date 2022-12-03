@@ -23,7 +23,7 @@ public class Ship_Level_Trigger : MonoBehaviour
     private GameObject[] Aemond_Array;
     private void Start()
     {
-
+        engine_Flicker = GameObject.Find("Light_Object").GetComponent<Engine_Flicker>();
         Escape_Text = GameObject.Find("EscapeText");
         Jace_Array = GameObject.FindGameObjectsWithTag("Jace");
         Luke_Array = GameObject.FindGameObjectsWithTag("Luke");
@@ -102,7 +102,7 @@ public class Ship_Level_Trigger : MonoBehaviour
             Jace.GetComponent<NPC_Escape>().enabled = false;
             Luke.GetComponent<NPC_Escape>().enabled = false;
             Aemond.GetComponent<NPC_Escape>().enabled = false;
-            SceneManager.LoadScene("Prison_Engines");
+            SceneManager.LoadScene("Escape_Scene");
         }
     }
 

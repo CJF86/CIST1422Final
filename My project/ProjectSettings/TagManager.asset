@@ -22,6 +22,8 @@ TagManager:
   - Light_Weapon
   - Escape_Point
   - Generator
+  - Escape_Ship
+  - Bird_Evidence
   layers:
   - Default
   - TransparentFX

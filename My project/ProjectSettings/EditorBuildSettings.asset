@@ -20,4 +20,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prison_Engines.unity
     guid: b6262a1526a504c41b22f763fada181a
+  - enabled: 1
+    path: Assets/Scenes/Escape_Scene.unity
+    guid: a6ff73ff497aaf3448cef507f53a8515
+  - enabled: 1
+    path: Assets/Scenes/Ending_Scenes/Good_Ending.unity
+    guid: d46afcb30054caa41839fb09e584231b
+  - enabled: 1
+    path: Assets/Scenes/Ending_Scenes/Medium_Ending.unity
+    guid: 539afc7e79aee3f4ba670b26d84a1bc1
+  - enabled: 1
+    path: Assets/Scenes/Ending_Scenes/Bad_Ending.unity
+    guid: d1b1110e84db82a449256d28b5e5c978
   m_configObjects: {}
