@@ -7,7 +7,7 @@ public class Hatch_Script : MonoBehaviour
     public Rigidbody Hatch;
     public Lever_Rotate Lever_Trigger;
     public GameObject Escape_Lever;
-    // Start is called before the first frame update
+    // This script handles removing the hatch for the alternate ending
     void Start()
     {
         Escape_Lever = GameObject.FindGameObjectWithTag("Window");
@@ -22,13 +22,11 @@ public class Hatch_Script : MonoBehaviour
     {
         if(transform.parent is not null)
         {
-            Debug.Log("Hatch attached");
             Hatch.useGravity = false;
         }
 
         if(transform.parent is null)
         {
-            Debug.Log("Hatch detached");
             Hatch.useGravity = true;
             Hatch.AddForce(Vector3.up*25,ForceMode.Impulse);
         }

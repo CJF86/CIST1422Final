@@ -10,7 +10,6 @@ public class Lever_Rotate : MonoBehaviour
     public Transform Child_Object;
     void Start()
     {
-        //Turn_Material = GetComponentInChildren<Material>();
         Child_Object = transform.Find("Sphere");
 
         Turn_Material = Child_Object.GetComponent<MeshRenderer>();
@@ -24,7 +23,7 @@ public class Lever_Rotate : MonoBehaviour
             Lever_Switch = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) == false)
+        if (Input.GetKeyUp(KeyCode.E) == true)
         {
             Lever_Switch = false;
         }

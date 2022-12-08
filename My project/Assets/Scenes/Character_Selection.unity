@@ -278,7 +278,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.06666667
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 46bcb7049c22b4e4dad0f09296c0c10f, type: 2}
   m_BuildHeightMesh: 0
@@ -296,6 +296,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &253388575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 253388577}
+  - component: {fileID: 253388576}
+  m_Layer: 0
+  m_Name: Collected_Evidence
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &253388576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253388575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea00da251c7ef8841abe702f7c432061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Evidence_Collected: 0
+--- !u!4 &253388577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253388575}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 308.87524, y: 4.331141, z: 3197.507}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &386790258
 GameObject:
@@ -460,9 +505,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player_Eyes: {fileID: 0}
-  Character_Turn_Speed: 10
   Y_Input: 0
   Mouse_Value: 0
+  Player_Character: {fileID: 0}
+  Script_Active: 1
 --- !u!4 &392446921
 Transform:
   m_ObjectHideFlags: 0
@@ -1077,6 +1123,7 @@ MonoBehaviour:
   Player_Camera: {fileID: 1137446192}
   Camera_Container: {fileID: 392446921}
   Selection_Scene: 
+  Container: {fileID: 0}
 --- !u!81 &1137446191
 AudioListener:
   m_ObjectHideFlags: 0

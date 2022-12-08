@@ -30,6 +30,7 @@ public class Floor_Rotation : MonoBehaviour
             
             StartCoroutine(Game_End());
         }
+
         Floor_Rotate();
 
     }
@@ -72,12 +73,17 @@ public class Floor_Rotation : MonoBehaviour
             Good_Ending();
         }
 
+        if (Surviving_Prisoners.Prisoner_Array.Count == 3 && Total_Evidence.Evidence_Collected < 5)
+        {
+            Medium_Ending();
+        }
+
         if (Surviving_Prisoners.Prisoner_Array.Count == 1 || Surviving_Prisoners.Prisoner_Array.Count == 2 && Total_Evidence.Evidence_Collected >= 0)
         {
             Medium_Ending();
         }
 
-        if (Surviving_Prisoners.Prisoner_Array.Count == 0 && Total_Evidence.Evidence_Collected < 5)
+        if (Surviving_Prisoners.Prisoner_Array.Count == 0 && Total_Evidence.Evidence_Collected < 5 || Total_Evidence.Evidence_Collected >= 5)
         {
             Bad_Ending();
         }

@@ -24,6 +24,7 @@ TagManager:
   - Generator
   - Escape_Ship
   - Bird_Evidence
+  - Prisoner_Tracking
   layers:
   - Default
   - TransparentFX

@@ -21,8 +21,10 @@ public class Ship_Level_Trigger : MonoBehaviour
     private GameObject[] Jace_Array;
     [SerializeField]
     private GameObject[] Aemond_Array;
+    private Engine_Spawn prisoner_Spawn;
     private void Start()
     {
+        prisoner_Spawn = GameObject.Find("EngineSpawn").GetComponent<Engine_Spawn>();
         engine_Flicker = GameObject.Find("Light_Object").GetComponent<Engine_Flicker>();
         Escape_Text = GameObject.Find("EscapeText");
         Jace_Array = GameObject.FindGameObjectsWithTag("Jace");
@@ -84,7 +86,7 @@ public class Ship_Level_Trigger : MonoBehaviour
                 Cloth.enabled = false;
             }
             collision.gameObject.GetComponent<NPC_Escape>().enabled = false;
-            //SceneManager.MoveGameObjectToScene(collision.gameObject, SceneManager.GetSceneByName("Prison_Stairwell"));
+            
 
 
             Debug.Log(collision.gameObject.name + "escaped");
@@ -99,9 +101,11 @@ public class Ship_Level_Trigger : MonoBehaviour
 
         if (collision.gameObject.tag == "Player" && Player_Exit == true && engine_Flicker.Light_Trigger >= 4)
         {
-            Jace.GetComponent<NPC_Escape>().enabled = false;
-            Luke.GetComponent<NPC_Escape>().enabled = false;
-            Aemond.GetComponent<NPC_Escape>().enabled = false;
+            foreach (GameObject go in prisoner_Spawn.Prisoner_Array)
+            {
+                go.GetComponent<NPC_Escape>().enabled = false;
+            }
+            
             SceneManager.LoadScene("Escape_Scene");
         }
     }

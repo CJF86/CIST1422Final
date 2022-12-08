@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 179127936}
+  - component: {fileID: 179127937}
   m_Layer: 0
   m_Name: Return_Object
   m_TagString: Untagged
@@ -155,6 +156,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &179127937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179127935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2180a6067bdb6343b3e0f4c7b63c000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &325680781
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,11 +331,11 @@ MonoBehaviour:
     any hard evidence that the
     ship was being used to charge the
 
-    "Birds". With no way to decipher the
-    ship controls and no evidence
+    "Birds". With no way to decipher the ship
+    controls and no evidence
 
-    of the drones, there is nothing to do but
-    wait as you drift through
+    of the drones, there is nothing to do but wait
+    as you drift through
 
     the cold expanse of space.'
   m_isRightToLeft: 0

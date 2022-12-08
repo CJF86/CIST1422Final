@@ -17,7 +17,6 @@ public class Player_Evidence : MonoBehaviour
         Bird_Text = GetComponent<TextMeshProUGUI>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Bird_Text.text = "Evidence found: " + Current_Evidence.Evidence_Collected.ToString();

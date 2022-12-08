@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ending_Scenes/Bad_Ending.unity
     guid: d1b1110e84db82a449256d28b5e5c978
+  - enabled: 1
+    path: Assets/Scenes/Controls_Scene.unity
+    guid: 46845c0b8ee9d214fb83ca3a72ad9eb2
+  - enabled: 1
+    path: Assets/Scenes/Player_Death.unity
+    guid: d69f9c3a2dd50d9499fc66569b49749e
   m_configObjects: {}

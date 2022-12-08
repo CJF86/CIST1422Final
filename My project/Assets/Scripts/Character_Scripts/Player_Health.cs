@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Player_Health : MonoBehaviour
 {
 
@@ -14,9 +15,11 @@ public class Player_Health : MonoBehaviour
     private LayerMask Enemy;
     public Bird_Collection Bird_Evidence;
     private bool Evidence_Trigger;
+    private Animator Player_Movement;
     void Start()
     {
-        Debug.Log("Has_Hit is " + Has_Hit);
+        Player_Movement = GetComponent<Animator>();
+        
         Total_Health = 100;
         StartCoroutine(Regen_Timer());
         Bird_Evidence = GameObject.Find("Collected_Evidence").GetComponent<Bird_Collection>();
@@ -47,14 +50,20 @@ public class Player_Health : MonoBehaviour
             {
                 Cloth.enabled = false;
             }
+            Player_Movement.SetBool("Is_Walking", false);
+            Player_Movement.SetBool("Is_Walking_Back", false);
+            Player_Movement.SetBool("Is_Running", false);
+            Player_Movement.SetBool("Is_Running_Back", false);
+            Player_Movement.SetBool("Strafe_Left", false);
+            Player_Movement.SetBool("Strafe_Right", false);
+            Player_Movement.SetBool("Is_Dead", true);
+            StartCoroutine(Player_Death());
         }
         
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        
-       
 
         if (collision.gameObject.tag == "Light_Weapon")
         {
@@ -128,7 +137,7 @@ public class Player_Health : MonoBehaviour
         {
             if (!In_Regen_Range && Total_Health < 100)
             {
-                Debug.Log("In While loop");
+                
                 Total_Health += 1;
                 yield return new WaitForSeconds(1f);
             }
@@ -147,5 +156,11 @@ public class Player_Health : MonoBehaviour
             Bird_Evidence.Evidence_Collected++;
             Destroy(collision.gameObject);
         }
+    }
+
+    public IEnumerator Player_Death()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("Player_Death", LoadSceneMode.Single);
     }
 }

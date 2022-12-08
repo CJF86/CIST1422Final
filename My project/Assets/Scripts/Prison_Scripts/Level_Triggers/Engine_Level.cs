@@ -24,9 +24,11 @@ public class Engine_Level : MonoBehaviour
     private GameObject[] Jace_Array;
     [SerializeField]
     private GameObject[] Aemond_Array;
+
+    private Prisoner_Spawn prisoner_Spawn;
     private void Start()
     {
-        
+        prisoner_Spawn = GameObject.Find("PrisonerSpawn").GetComponent<Prisoner_Spawn>();
         Escape_Text = GameObject.Find("EscapeText");
         Jace_Array = GameObject.FindGameObjectsWithTag("Jace");
         Luke_Array = GameObject.FindGameObjectsWithTag("Luke");
@@ -103,9 +105,11 @@ public class Engine_Level : MonoBehaviour
 
         if (collision.gameObject.tag == "Player" && Player_Exit == true)
         {
-            Jace.GetComponent<NPC_Escape>().enabled = false;
-            Luke.GetComponent<NPC_Escape>().enabled = false;
-            Aemond.GetComponent<NPC_Escape>().enabled = false;
+            foreach(GameObject go in prisoner_Spawn.Prisoner_Array)
+            {
+                go.GetComponent<NPC_Escape>().enabled = false;
+            }
+            
             SceneManager.LoadScene("Prison_Engines");
         }
     }

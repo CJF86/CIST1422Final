@@ -11,11 +11,7 @@ public class Bird_Collection : MonoBehaviour
         Evidence_Collected = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     
 }

@@ -528,6 +528,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1621417359}
+  - component: {fileID: 1621417360}
   m_Layer: 0
   m_Name: Return_Object
   m_TagString: Untagged
@@ -551,6 +552,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1621417360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621417358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2180a6067bdb6343b3e0f4c7b63c000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1690185298
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,11 +632,11 @@ MonoBehaviour:
     You
     were also able to find undeniable evidence
 
-    that you were being kept at
-    a "Bird" charging station.
+    that you were being kept at a
+    "Bird" charging station.
 
-    All that''s left now is to either figure out
-    these alien ship
+    All that''s left now is to either figure out these
+    alien ship
 
     controls, or wait until you fall into a planets orbit.'
   m_isRightToLeft: 0

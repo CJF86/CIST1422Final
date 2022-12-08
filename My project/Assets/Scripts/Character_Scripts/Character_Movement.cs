@@ -37,36 +37,45 @@ public class Character_Movement : MonoBehaviour
 
     public float Mouse_X;
 
-    
+    private bool Is_Talking;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         Player_Movement = GetComponent<Animator>();
 
         Player_Body = GetComponent<Rigidbody>();
-
-        /*
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        */
-        //Player_Audio = GetComponent<AudioSource>();
+        
         Instance = this;
         
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) == true)
+        {
+            Is_Talking = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.E) == true)
+        {
+            Is_Talking = false;
+        }
+    }
+
     private void FixedUpdate()
     {
-        
 
-        
 
-        Character_Control();
-        Character_Rotation();
-        Character_Attacks();
-        Character_Jump();
-        Is_Holding();
-        //Debug.Log(Is_Holding());
+        if (SceneManager.GetActiveScene().name != "Character_Selection")
+        {
+            Character_Control();
+            Character_Rotation();
+            Character_Attacks();
+            Character_Jump();
+            Is_Holding();
+        }
+        
     }
 
     public void Character_Control()
@@ -81,6 +90,7 @@ public class Character_Movement : MonoBehaviour
             He_Zoom = false;
             
         }
+
         //quicker way to access WASD controls as opposed to nested if statements
         float X_Movement = Input.GetAxis("Horizontal");
         
@@ -117,7 +127,7 @@ public class Character_Movement : MonoBehaviour
             Player_Movement.SetBool("Is_Walking", false);
             Player_Movement.SetBool("Is_Running", true);
             Player_Body.AddRelativeForce(Vector3.forward * Character_Run_Speed, ForceMode.VelocityChange);
-            Debug.Log("Run trigger");
+            
 
         }
         
@@ -132,15 +142,7 @@ public class Character_Movement : MonoBehaviour
             }
 
         }
-        /*
-        if(Z_Movement < 0 && He_Zoom == true)
-        {
-            Player_Movement.SetBool("Is_Walking_Back", false);
-            Player_Movement.SetBool("Is_Running_Back", true);
-            Player_Body.AddForce(Vector3.forward * -Character_Run_Speed, ForceMode.VelocityChange);
-            Debug.Log("Back Run trigger");
-        }
-        */
+       
         if (X_Movement >= 0.1)
         {
             Player_Body.AddRelativeForce(Vector3.right * Character_Walk_Speed, ForceMode.VelocityChange);
@@ -169,11 +171,8 @@ public class Character_Movement : MonoBehaviour
 
     public void Character_Rotation()
     {
-        //Works well enough for now
-
+        
         Mouse_Value = Input.GetAxis("Mouse X");
-
-        //Debug.Log(Mouse_Value);
 
         float Turn_Degree = Mouse_Value * Character_Turn_Speed * Time.fixedDeltaTime;
 
@@ -181,19 +180,9 @@ public class Character_Movement : MonoBehaviour
 
         Turn_Vector.y += Mouse_Value * Character_Turn_Speed * Time.fixedDeltaTime;
 
-        //Changing Mouse_Value from negative to positive
-
-        //Debug.Log("This is" + Turn_Vector.y);
-
         Quaternion Turn = Quaternion.Euler(Turn_Vector);
 
         Player_Body.MoveRotation(Player_Body.rotation * Turn);
-
-       
-
-        
-
-
 
     }
 
@@ -213,8 +202,6 @@ public class Character_Movement : MonoBehaviour
     public void Character_Attacks()
     {
         bool Attack_Trigger = Input.GetMouseButton(0);
-        //bool Audio_Trigger = false;
-        
 
         if (Attack_Trigger == true)
         {
@@ -227,7 +214,6 @@ public class Character_Movement : MonoBehaviour
         else
         {
             Player_Movement.SetBool("Is_Attacking", false);
-            //Audio_Trigger = false;
         }
 
         
@@ -264,7 +250,7 @@ public class Character_Movement : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if(collision.gameObject.tag == "Aemond" && Input.GetKeyDown(KeyCode.E))
+        if(collision.gameObject.tag == "Aemond" && Is_Talking == true)
         {
             if (Player_Audio.isPlaying == false)
             {
@@ -272,7 +258,7 @@ public class Character_Movement : MonoBehaviour
             }
         }
 
-        if(collision.gameObject.tag == "Jace" && Input.GetKeyDown(KeyCode.E))
+        if(collision.gameObject.tag == "Jace" && Is_Talking == true)
         {
             if (Player_Audio.isPlaying == false)
             {
@@ -280,12 +266,5 @@ public class Character_Movement : MonoBehaviour
             }
         }
     }
-
-    public void Animation_Test()
-    {
-        Debug.Log("Animation event trigger");
-    }
-
-
 
 }
